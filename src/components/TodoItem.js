@@ -4,7 +4,7 @@ function TodoItem({ item, removeItem }) {
   return (
     <li className="todoList-item">
       <div>{item}</div>
-      <button type="button" onClick={removeItem}>
+      <button className="todoList-item-removeBtn" type="button" onClick={removeItem}>
         X
       </button>
     </li>

@@ -12,9 +12,11 @@ function TodoList() {
     <div className="todoList">
       <h1>TodoList</h1>
       <TodoFrom todoItemValue={value => dispatch({ type: "ADD_ITEM", addItem: value })} />
-      {todo.todoList.map((item, index) => (
-        <TodoListItem removeItem={() => dispatch({ type: "REMOVE_ITEM", removeItem: index })} item={item} key={index} />
-      ))}
+      <div className="todoList-component">
+        {todo.todoList.map((item, index) => (
+          <TodoListItem removeItem={() => dispatch({ type: "REMOVE_ITEM", removeItem: index })} item={item} key={index} />
+        ))}
+      </div>
     </div>
   );
 }
