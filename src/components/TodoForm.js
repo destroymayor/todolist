@@ -19,9 +19,18 @@ function TodoForm({ todoItemValue }) {
   };
 
   return (
-    <form onSubmit={OnSubmit}>
-      <input ref={inputRef} onChange={e => setInputValue(e.target.value)} type="text" id="todoValue" placeholder="輸入新項目" />
-      <button type="submit">新增</button>
+    <form className="todoList-form" onSubmit={OnSubmit}>
+      <input
+        className="todoList-input"
+        ref={inputRef}
+        onChange={e => setInputValue(e.target.value)}
+        type="text"
+        id="todoValue"
+        placeholder="輸入新項目"
+      />
+      <button type="submit" className="btn btn-primary todoList-AddBtn">
+        新增工作
+      </button>
     </form>
   );
 }

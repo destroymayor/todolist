@@ -1,11 +1,16 @@
 import React from "react";
 
-function TodoItem({ item, removeItem }) {
+function TodoItem({ item, todoClass, markTodoDone, removeTodoItem }) {
   return (
-    <li className="todoList-item">
-      <div>{item}</div>
-      <button className="todoList-item-removeBtn" type="button" onClick={removeItem}>
-        X
+    <li className="list-group-item todoList-item">
+      <div className={todoClass ? "todoList-done" : undefined}>
+        <span className="todoList-item-doneBtn" onClick={markTodoDone}>
+          &radic;
+        </span>
+        {item}
+      </div>
+      <button className="close todoList-item-removeBtn" type="button" onClick={removeTodoItem}>
+        &times;
       </button>
     </li>
   );

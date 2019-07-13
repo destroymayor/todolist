@@ -6,17 +6,25 @@ import TodoListItem from "./TodoItem";
 import TodoFrom from "./TodoForm";
 
 function TodoList() {
-  const [todo, dispatch] = useReducer(doToListReducer, { todoList: ["123", "456"] });
+  const [todo, dispatch] = useReducer(doToListReducer, {
+    todoList: [{ value: "123", done: true }, { value: "456", done: false }]
+  });
 
   return (
     <div className="todoList">
-      <h1>TodoList</h1>
+      <h1>React TodoList</h1>
       <TodoFrom todoItemValue={value => dispatch({ type: "ADD_ITEM", addItem: value })} />
-      <div className="todoList-component">
+      <ul className="list-group todoList-component">
         {todo.todoList.map((item, index) => (
-          <TodoListItem removeItem={() => dispatch({ type: "REMOVE_ITEM", removeItem: index })} item={item} key={index} />
+          <TodoListItem
+            todoClass={item.done}
+            markTodoDone={() => dispatch({ type: "DONE_ITEM", doneItem: index })}
+            removeTodoItem={() => dispatch({ type: "REMOVE_ITEM", removeItem: index })}
+            item={item.value}
+            key={index}
+          />
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
