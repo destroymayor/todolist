@@ -1,7 +1,7 @@
 const doToListReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM":
-      return { ...state, todoList: [{ value: action.addItem }, ...state.todoList] };
+      return { ...state, todoList: [{ value: action.addItem, done: false }, ...state.todoList] };
 
     case "REMOVE_ITEM":
       const todoList_newState = [...state.todoList];
@@ -16,6 +16,17 @@ const doToListReducer = (state, action) => {
       todoListIndex.done = !todoListIndex.done;
       todoListIndex.done ? todoList_DoneItem.push(todoListIndex) : todoList_DoneItem.unshift(todoListIndex);
       return { ...state, todoList: todoList_DoneItem };
+
+    case "EDIT_ITEM":
+      const todoList_EditItem = [...state.todoList];
+      const findTodoListIndex = todoList_EditItem.findIndex((obj, index) => index === action.editIndex);
+      const updateTodoItem = { ...todoList_EditItem[findTodoListIndex], value: action.editItem };
+      const finalTodoList = [
+        ...todoList_EditItem.slice(0, findTodoListIndex),
+        updateTodoItem,
+        ...todoList_EditItem.slice(findTodoListIndex + 1)
+      ];
+      return { ...state, todoList: finalTodoList };
 
     default:
       throw new Error();
