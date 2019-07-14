@@ -21,7 +21,7 @@ function TodoList() {
       <ul className="list-group todoList-component">
         {todo.todoList.map((item, index) => (
           <TodoItem
-            todoClass={item.done}
+            todoDoneState={item.done}
             markTodoDone={() => dispatch({ type: "DONE_ITEM", doneItem: index })}
             removeTodoItem={() => dispatch({ type: "REMOVE_ITEM", removeItem: index })}
             editTodoItemText={value => dispatch({ type: "EDIT_ITEM", editIndex: index, editItem: value })}

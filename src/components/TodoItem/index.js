@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 
-function TodoItem({ item, todoClass, editTodoItemText, markTodoDone, removeTodoItem }) {
+function TodoItem({ item, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
   const [editState, setEditState] = useState(true);
   const [editValue, setEditValue] = useState("");
   const todoInputRef = useRef();
@@ -20,11 +20,11 @@ function TodoItem({ item, todoClass, editTodoItemText, markTodoDone, removeTodoI
 
   return (
     <li className="list-group-item todoList-li">
-      <div className={todoClass ? "todoList-done" : undefined}>
+      <div className={todoDoneState ? "todoList-done" : undefined}>
         {editState ? (
           <div className="todoList-li-item">
             <span className="todoList-ctrl" onClick={markTodoDone}>
-              <ion-icon name={todoClass ? "done-all" : "checkmark"} />
+              <ion-icon name={todoDoneState ? "done-all" : "checkmark"} />
             </span>
             <span className="todoList-item-text">{item}</span>
           </div>
@@ -32,9 +32,11 @@ function TodoItem({ item, todoClass, editTodoItemText, markTodoDone, removeTodoI
           <input ref={todoInputRef} value={item} onChange={e => setEditValue(e.target.value)} className="todoList-item-input" />
         )}
       </div>
-      <span onClick={editTodoItem} className="todoList-ctrl todoList-item-editBtn">
-        <ion-icon name={editState ? "create" : "checkmark"} />
-      </span>
+      {!todoDoneState && (
+        <span onClick={editTodoItem} className="todoList-ctrl todoList-item-editBtn">
+          <ion-icon name={editState ? "create" : "checkmark"} />
+        </span>
+      )}
       <span onClick={removeTodoItem} className="todoList-ctrl">
         <ion-icon name="close" />
       </span>
