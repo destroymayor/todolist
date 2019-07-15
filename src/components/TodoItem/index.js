@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
+import { Button, List, Input, Tooltip } from "antd";
 
 function TodoItem({ item, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
   const [editState, setEditState] = useState(true);
@@ -19,28 +20,34 @@ function TodoItem({ item, todoDoneState, editTodoItemText, markTodoDone, removeT
   };
 
   return (
-    <li className="list-group-item todoList-li">
+    <List.Item className="todoList-li">
       <div className={todoDoneState ? "todoList-done" : undefined}>
         {editState ? (
           <div className="todoList-li-item">
-            <span className="todoList-ctrl" onClick={markTodoDone}>
-              <ion-icon name={todoDoneState ? "done-all" : "checkmark"} />
-            </span>
+            <Tooltip title="標示為完成" placement="bottom">
+              <Button className="todoList-ctrl" onClick={markTodoDone} icon="check" />
+            </Tooltip>
             <span className="todoList-item-text">{item}</span>
           </div>
         ) : (
-          <input ref={todoInputRef} value={item} onChange={e => setEditValue(e.target.value)} className="todoList-item-input" />
+          <Input
+            ref={todoInputRef}
+            value={editValue}
+            onChange={e => setEditValue(e.target.value)}
+            className="todoList-item-input"
+          />
         )}
       </div>
+
       {!todoDoneState && (
-        <span onClick={editTodoItem} className="todoList-ctrl todoList-item-editBtn">
-          <ion-icon name={editState ? "create" : "checkmark"} />
-        </span>
+        <Tooltip title="編輯" placement="bottom">
+          <Button className="todoList-ctrl" onClick={editTodoItem} icon={editState ? "edit" : "check"} />
+        </Tooltip>
       )}
-      <span onClick={removeTodoItem} className="todoList-ctrl">
-        <ion-icon name="close" />
-      </span>
-    </li>
+      <Tooltip title="刪除" placement="bottom">
+        <Button className="todoList-ctrl" onClick={removeTodoItem} icon="delete" />
+      </Tooltip>
+    </List.Item>
   );
 }
 

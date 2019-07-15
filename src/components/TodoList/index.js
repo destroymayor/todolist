@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import "./index.css";
+import { List } from "antd";
 
 import doToListReducer from "../../reducer/doToListReducer";
 
@@ -18,8 +19,11 @@ function TodoList() {
     <div className="todoList">
       <h1>React TodoList</h1>
       <TodoFrom todoItemValue={value => dispatch({ type: "ADD_ITEM", addItem: value })} />
-      <ul className="list-group todoList-component">
-        {todo.todoList.map((item, index) => (
+      <List
+        bordered
+        locale={{ emptyText: "目前無代辦事項" }}
+        dataSource={todo.todoList}
+        renderItem={(item, index) => (
           <TodoItem
             todoDoneState={item.done}
             markTodoDone={() => dispatch({ type: "DONE_ITEM", doneItem: index })}
@@ -28,8 +32,8 @@ function TodoList() {
             item={item.value}
             key={index}
           />
-        ))}
-      </ul>
+        )}
+      />
     </div>
   );
 }
