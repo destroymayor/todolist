@@ -2,17 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import { Button, List, Input, Tooltip } from "antd";
 
-function TodoItem({ item, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
+function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
   const [editState, setEditState] = useState(true);
   const [editValue, setEditValue] = useState("");
   const todoInputRef = useRef();
 
   useEffect(() => {
-    setEditValue(item);
+    setEditValue(todoItemDataSource.title);
     if (!editState) {
       todoInputRef.current.focus();
     }
-  }, [editState, item]);
+  }, [editState, todoItemDataSource.title]);
 
   const editTodoItem = () => {
     setEditState(!editState);
@@ -24,10 +24,12 @@ function TodoItem({ item, todoDoneState, editTodoItemText, markTodoDone, removeT
       <div className={todoDoneState ? "todoList-done" : undefined}>
         {editState ? (
           <div className="todoList-li-item">
-            <Tooltip title="標示為完成" placement="bottom">
-              <Button className="todoList-ctrl" onClick={markTodoDone} icon="check" />
-            </Tooltip>
-            <span className="todoList-item-text">{item}</span>
+            <Button className="todoList-ctrl" onClick={markTodoDone} icon="check" />
+            <div className="todoList-li-item-text">
+              <h3 className="todoList-item-text">{todoItemDataSource.title}</h3>
+              <span className="todoList-item-text">{todoItemDataSource.content}</span>
+              <span className="todoList-item-text">{todoItemDataSource.date}</span>
+            </div>
           </div>
         ) : (
           <Input
@@ -39,14 +41,16 @@ function TodoItem({ item, todoDoneState, editTodoItemText, markTodoDone, removeT
         )}
       </div>
 
-      {!todoDoneState && (
-        <Tooltip title="編輯" placement="bottom">
-          <Button className="todoList-ctrl" onClick={editTodoItem} icon={editState ? "edit" : "check"} />
+      <div>
+        {!todoDoneState && (
+          <Tooltip title="編輯詳細資訊" placement="bottom">
+            <Button className="todoList-ctrl" onClick={editTodoItem} icon={editState ? "form" : "check"} />
+          </Tooltip>
+        )}
+        <Tooltip title="刪除" placement="bottom">
+          <Button className="todoList-ctrl" onClick={removeTodoItem} icon="delete" />
         </Tooltip>
-      )}
-      <Tooltip title="刪除" placement="bottom">
-        <Button className="todoList-ctrl" onClick={removeTodoItem} icon="delete" />
-      </Tooltip>
+      </div>
     </List.Item>
   );
 }
