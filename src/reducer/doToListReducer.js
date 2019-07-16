@@ -1,7 +1,7 @@
 const doToListReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM":
-      return { ...state, todoList: [{ value: action.addItem, done: false }, ...state.todoList] };
+      return { ...state, todoList: [action.addTodoListItem, ...state.todoList] };
 
     case "REMOVE_ITEM":
       const todoList_newState = [...state.todoList];
@@ -20,7 +20,7 @@ const doToListReducer = (state, action) => {
     case "EDIT_ITEM":
       const todoList_EditItem = [...state.todoList];
       const findTodoListIndex = todoList_EditItem.findIndex((obj, index) => index === action.editIndex);
-      const updateTodoItem = { ...todoList_EditItem[findTodoListIndex], value: action.editItem };
+      const updateTodoItem = { ...todoList_EditItem[findTodoListIndex], title: action.editItem };
       const finalTodoList = [
         ...todoList_EditItem.slice(0, findTodoListIndex),
         updateTodoItem,
