@@ -20,10 +20,9 @@ const doToListReducer = (state, action) => {
     case "EDIT_ITEM":
       const todoList_EditItem = [...state.todoList];
       const findTodoListIndex = todoList_EditItem.findIndex((obj, index) => index === action.editIndex);
-      const updateTodoItem = { ...todoList_EditItem[findTodoListIndex], title: action.editItem };
       const finalTodoList = [
         ...todoList_EditItem.slice(0, findTodoListIndex),
-        updateTodoItem,
+        action.editItem,
         ...todoList_EditItem.slice(findTodoListIndex + 1)
       ];
       return { ...state, todoList: finalTodoList };

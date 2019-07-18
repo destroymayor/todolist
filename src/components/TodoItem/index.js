@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./index.css";
 import locale from "antd/lib/date-picker/locale/zh_TW";
+
+import moment from "moment";
 import { Button, DatePicker, List, Icon, Input, Tooltip } from "antd";
 
 function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
   const [editState, setEditState] = useState(true);
-  const [editValue, setEditValue] = useState("");
+  const [editValue, setEditValue] = useState({ title: "", content: "", date: "", done: false });
   const todoInputRef = useRef();
 
   useEffect(() => {
-    setEditValue(todoItemDataSource.title);
+    setEditValue(todoItemDataSource);
     if (!editState) {
       todoInputRef.current.focus();
     }
-  }, [editState, todoItemDataSource.title]);
+  }, [editState, todoItemDataSource]);
 
   const editTodoItem = () => {
     setEditState(!editState);
@@ -44,16 +46,22 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
           <div className="todoList-item-edit">
             <Input
               ref={todoInputRef}
-              value={editValue}
+              value={editValue.title}
               placeholder="輸入標題"
-              onChange={e => setEditValue(e.target.value)}
+              onChange={e => {
+                const { value } = e.target;
+                setEditValue(prevState => ({ ...prevState, title: value }));
+              }}
               className="todoList-item-edit-component"
             />
             <Input
               ref={todoInputRef}
-              value={editValue}
+              value={editValue.content}
               placeholder="輸入詳細內容"
-              onChange={e => setEditValue(e.target.value)}
+              onChange={e => {
+                const { value } = e.target;
+                setEditValue(prevState => ({ ...prevState, content: value }));
+              }}
               className="todoList-item-edit-component"
             />
             <DatePicker
@@ -61,13 +69,13 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
               locale={locale}
               format="YYYY-MM-DD HH:mm:ss"
               placeholder="新增日期/時間"
-              onChange={(value, dateString) => {}}
+              defaultValue={moment(editValue.date, "YYYY-MM-DD HH:mm:ss")}
+              onChange={(value, dateString) => setEditValue(prevState => ({ ...prevState, date: dateString }))}
               className="todoList-item-edit-component"
             />
           </div>
         )}
       </div>
-
       <div className="todoList-ctrl">
         {!todoDoneState && (
           <Tooltip title="編輯詳細資訊" placement="bottom">
