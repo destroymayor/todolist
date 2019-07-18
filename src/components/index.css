@@ -1,0 +1,19 @@
+.App {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 42rem;
+    padding: 2.625rem 1.3125rem;
+}
+
+.App-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.App-header>h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 42px;
+    line-height: 2.625rem;
+}

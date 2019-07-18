@@ -36,10 +36,12 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
             <div className="todoList-item-text">
               <div className="todoList-item-text-title">{todoItemDataSource.title}</div>
               <div className="todoList-item-text-content">{todoItemDataSource.content}</div>
-              <div className="todoList-item-text-date">
-                <Icon style={{ color: "#1a73e8" }} type="calendar" />
-                <span>{todoItemDataSource.date}</span>
-              </div>
+              {todoItemDataSource.date !== "" && (
+                <div className="todoList-item-text-date">
+                  <Icon style={{ color: "#1a73e8" }} type="calendar" />
+                  <span>{todoItemDataSource.date}</span>
+                </div>
+              )}
             </div>
           </div>
         ) : (
@@ -69,7 +71,7 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
               locale={locale}
               format="YYYY-MM-DD HH:mm:ss"
               placeholder="新增日期/時間"
-              defaultValue={moment(editValue.date, "YYYY-MM-DD HH:mm:ss")}
+              defaultValue={editValue.date !== "" && moment(editValue.date, "YYYY-MM-DD HH:mm:ss")}
               onChange={(value, dateString) => setEditValue(prevState => ({ ...prevState, date: dateString }))}
               className="todoList-item-edit-component"
             />

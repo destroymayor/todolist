@@ -1,11 +1,11 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 import "./index.css";
 import { List } from "antd";
 
 import doToListReducer from "../../reducer/doToListReducer";
 
-import TodoItem from "../TodoItem/index";
-import TodoFrom from "../TodoForm/index";
+import TodoItem from "../TodoItem";
+import TodoFrom from "../TodoForm";
 
 function TodoList() {
   const [todo, dispatch] = useReducer(doToListReducer, {
@@ -15,13 +15,8 @@ function TodoList() {
     ]
   });
 
-  useEffect(() => {
-    console.log(todo.todoList);
-  }, [todo.todoList]);
-
   return (
-    <div className="todoList">
-      <h1>React TodoList</h1>
+    <>
       <TodoFrom todoItemValue={item => dispatch({ type: "ADD_ITEM", addTodoListItem: item })} />
       <List
         bordered
@@ -38,7 +33,7 @@ function TodoList() {
           />
         )}
       />
-    </div>
+    </>
   );
 }
 
