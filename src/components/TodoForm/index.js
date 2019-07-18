@@ -1,28 +1,21 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./index.css";
 import locale from "antd/lib/date-picker/locale/zh_TW";
 import { Button, DatePicker, Input } from "antd";
 
-function TodoForm({ todoItemValue }) {
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef();
+const { TextArea } = Input;
 
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+function TodoForm({ todoItemValue }) {
+  const [inputTodoListTitle, setInputTodoListTitle] = useState({ title: "", content: "", date: "" });
+  const inputRef = useRef();
 
   const OnSubmit = e => {
     e.preventDefault();
-    if (!inputValue) return;
+    if (!inputTodoListTitle) return;
 
-    todoItemValue(inputValue);
-    setInputValue("");
+    todoItemValue(inputTodoListTitle);
+    setInputTodoListTitle({ title: "", content: "", date: "" });
     inputRef.current.focus();
-  };
-
-  const handleDatePicker = (value, dateString) => {
-    console.log("Selected Time: ", value);
-    console.log("Formatted Selected Time: ", dateString);
   };
 
   return (
@@ -31,17 +24,28 @@ function TodoForm({ todoItemValue }) {
         <Input
           className="todoList-input"
           ref={inputRef}
-          onChange={e => setInputValue(e.target.value)}
-          value={inputValue}
-          type="text"
-          placeholder="輸入新項目"
+          onChange={e => {
+            const { value } = e.target;
+            setInputTodoListTitle(prevState => ({ ...prevState, title: value }));
+          }}
+          value={inputTodoListTitle.title}
+          placeholder="輸入標題"
+        />
+        <TextArea
+          rows={4}
+          placeholder="輸入詳細內容"
+          onChange={e => {
+            const { value } = e.target;
+            setInputTodoListTitle(prevState => ({ ...prevState, content: value }));
+          }}
+          value={inputTodoListTitle.content}
         />
         <DatePicker
           showTime
           locale={locale}
           format="YYYY-MM-DD HH:mm:ss"
           placeholder="新增日期/時間"
-          onChange={handleDatePicker}
+          onChange={(value, dateString) => setInputTodoListTitle(prevState => ({ ...prevState, date: dateString }))}
         />
       </div>
       <Button htmlType="submit" type="primary" className="todoList-AddBtn" icon="plus">

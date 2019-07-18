@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import "./index.css";
 import { List } from "antd";
 
@@ -10,15 +10,19 @@ import TodoFrom from "../TodoForm/index";
 function TodoList() {
   const [todo, dispatch] = useReducer(doToListReducer, {
     todoList: [
-      { value: "項目1項目1項目1項目1項目1項目1項目1項目1項目1項目1項目1項目1項目1", done: true },
-      { value: "項目2", done: false }
+      { title: "項目1", content: "內容1內容1內容1內容1內容2", date: "2019-07-16 15:37:08", done: false },
+      { title: "項目2", content: "內容2", date: "2019-07-16 15:37:08", done: true }
     ]
   });
+
+  useEffect(() => {
+    console.log(todo.todoList);
+  }, [todo.todoList]);
 
   return (
     <div className="todoList">
       <h1>React TodoList</h1>
-      <TodoFrom todoItemValue={value => dispatch({ type: "ADD_ITEM", addItem: value })} />
+      <TodoFrom todoItemValue={item => dispatch({ type: "ADD_ITEM", addTodoListItem: item })} />
       <List
         bordered
         locale={{ emptyText: "目前無代辦事項" }}
@@ -28,8 +32,8 @@ function TodoList() {
             todoDoneState={item.done}
             markTodoDone={() => dispatch({ type: "DONE_ITEM", doneItem: index })}
             removeTodoItem={() => dispatch({ type: "REMOVE_ITEM", removeItem: index })}
-            editTodoItemText={value => dispatch({ type: "EDIT_ITEM", editIndex: index, editItem: value })}
-            item={item.value}
+            editTodoItemText={item => dispatch({ type: "EDIT_ITEM", editIndex: index, editItem: item })}
+            todoItemDataSource={item}
             key={index}
           />
         )}
