@@ -28,7 +28,7 @@ const doToListReducer = (state, action) => {
       return { ...state, todoList: finalTodoList };
 
     default:
-      throw new Error();
+      return state;
   }
 };
 

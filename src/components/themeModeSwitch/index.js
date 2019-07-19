@@ -3,10 +3,7 @@ import "./index.css";
 
 import { Switch } from "antd";
 
-function themeModeSwitch() {
-  const onChange = checked => {
-    console.log(checked);
-  };
+function themeModeSwitch({ onChange }) {
   return <Switch className="theme-toggle" checkedChildren="Light" unCheckedChildren="Dark" defaultChecked onChange={onChange} />;
 }
 

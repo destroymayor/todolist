@@ -2,10 +2,9 @@
     margin: 10px 0px 10px 0px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     border: 1px solid #dddddd;
     border-radius: 5px;
-    padding: 10px 85px 10px 85px;
+    padding: 10px 25px 10px 25px;
 }
 
 .todoList-form-item {
@@ -15,13 +14,13 @@
 }
 
 .todoList-input {
-    width: 210px;
     padding: 10px;
     margin-bottom: 10px;
 }
 
 
 .todoList-AddBtn {
+    align-self: center;
     width: 120px;
     margin-left: 5px;
     font-size: 15px;

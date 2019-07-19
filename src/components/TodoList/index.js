@@ -2,18 +2,17 @@ import React, { useReducer } from "react";
 import "./index.css";
 import { List } from "antd";
 
-import doToListReducer from "../../reducer/doToListReducer";
-
+import doToListReducer from "./reducer";
 import TodoItem from "../TodoItem";
 import TodoFrom from "../TodoForm";
 
+const data = [
+  { title: "項目1", content: "內容1內容1內容1內容1內容2", date: "2019-07-16", done: false },
+  { title: "項目2", content: "內容2", date: "2019-07-16", done: true }
+];
+
 function TodoList() {
-  const [todo, dispatch] = useReducer(doToListReducer, {
-    todoList: [
-      { title: "項目1", content: "內容1內容1內容1內容1內容2", date: "2019-07-16 15:37:08", done: false },
-      { title: "項目2", content: "內容2", date: "2019-07-16 15:37:08", done: true }
-    ]
-  });
+  const [todo, dispatch] = useReducer(doToListReducer, { todoList: data });
 
   return (
     <>

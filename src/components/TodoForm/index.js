@@ -3,7 +3,6 @@ import "./index.css";
 import locale from "antd/lib/date-picker/locale/zh_TW";
 
 import { Button, DatePicker, Input } from "antd";
-
 const { TextArea } = Input;
 
 function TodoForm({ todoItemValue }) {
@@ -42,14 +41,18 @@ function TodoForm({ todoItemValue }) {
           value={inputTodoListTitle.content}
         />
         <DatePicker
-          showTime
           locale={locale}
-          format="YYYY-MM-DD HH:mm:ss"
+          format="YYYY-MM-DD"
           placeholder="新增日期/時間"
           onChange={(value, dateString) => setInputTodoListTitle(prevState => ({ ...prevState, date: dateString }))}
         />
       </div>
-      <Button htmlType="submit" type="primary" className="todoList-AddBtn" icon="plus">
+      <Button
+        htmlType="submit"
+        type="primary"
+        disabled={inputTodoListTitle.title !== "" ? false : true}
+        className="todoList-AddBtn"
+        icon="plus">
         新增工作
       </Button>
     </form>

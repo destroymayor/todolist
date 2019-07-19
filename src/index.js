@@ -1,9 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import "./index.css";
-import App from "./components";
+import UseContextWrapper from "./components/hooks/useContextWrapper";
+import Page from "./components";
 import * as serviceWorker from "./serviceWorker";
+
+function App() {
+  return (
+    <UseContextWrapper>
+      <Page />
+    </UseContextWrapper>
+  );
+}
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
