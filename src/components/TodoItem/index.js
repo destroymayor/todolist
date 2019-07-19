@@ -17,6 +17,9 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
   const [editState, setEditState] = useState(true);
 
   const [todo, dispatchTodoItem] = useReducer(editListReducer, { todoItem: todoItemDataSource });
+  const editTitle = title => dispatchTodoItem({ type: "EDIT_TITLE", todoList_title: title });
+  const editContent = content => dispatchTodoItem({ type: "EDIT_CONTENT", todoList_content: content });
+  const editDate = date => dispatchTodoItem({ type: "EDIT_DATE", todoList_date: date });
 
   const editTodoItem = () => {
     setEditState(!editState);
@@ -52,13 +55,13 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
                 className="todoList-item-edit-component"
                 value={todo.todoItem.title}
                 placeholder="輸入標題"
-                onChange={e => dispatchTodoItem({ type: "EDIT_TITLE", todoList_title: e.target.value })}
+                onChange={e => editTitle(e.target.value)}
               />
               <Input
                 className="todoList-item-edit-component"
                 value={todo.todoItem.content}
                 placeholder="輸入詳細內容"
-                onChange={e => dispatchTodoItem({ type: "EDIT_CONTENT", todoList_content: e.target.value })}
+                onChange={e => editContent(e.target.value)}
               />
               <DatePicker
                 className="todoList-item-edit-component"
@@ -66,7 +69,7 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
                 format="YYYY-MM-DD"
                 placeholder="新增日期/時間"
                 defaultValue={todo.todoItem.date !== "" && moment(todo.todoItem.date, "YYYY-MM-DD")}
-                onChange={(value, dateString) => dispatchTodoItem({ type: "EDIT_DATE", todoList_date: dateString })}
+                onChange={(value, dateString) => editDate(dateString)}
               />
             </div>
           )}

@@ -9,6 +9,7 @@ const { TextArea } = Input;
 function TodoForm({ todoItemValue }) {
   const { darkMode } = useContext(DarkModeContext);
   const themeMode = `${darkMode ? "light" : "dark"}`;
+  const themeFont = `${darkMode ? "light-font" : " dark-font"}`;
 
   const [inputTodoListTitle, setInputTodoListTitle] = useState({ title: "", content: "", date: "" });
   const inputRef = useRef();
@@ -26,7 +27,7 @@ function TodoForm({ todoItemValue }) {
     <form className="todoList-form" onSubmit={OnSubmit}>
       <div className="todoList-form-item">
         <Input
-          className={`todoList-input ${themeMode}`}
+          className={`todoList-input ${themeMode} ${themeFont}`}
           ref={inputRef}
           onChange={e => {
             const { value } = e.target;
@@ -36,7 +37,7 @@ function TodoForm({ todoItemValue }) {
           placeholder="輸入標題"
         />
         <TextArea
-          className={themeMode}
+          className={`${themeMode} ${themeFont}`}
           rows={4}
           placeholder="輸入詳細內容"
           onChange={e => {
