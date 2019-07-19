@@ -27,13 +27,11 @@
 
 .todoList-item-text-title {
     font-size: 14px;
-    color: #202124;
 }
 
 .todoList-item-text-content {
     font-size: 12px;
     line-height: 16px;
-    color: #5f6368;
     letter-spacing: .26px;
     margin-top: 2px;
     margin-bottom: 2px;
@@ -43,9 +41,7 @@
     font-size: 13px;
     border: 1px solid #e8eaed;
     border-radius: 4px;
-    background: #f8f9fa;
     white-space: nowrap;
-    color: #5f6368;
     padding: 5px 7px 5px 7px;
     margin-top: 6px;
     width: 105px;

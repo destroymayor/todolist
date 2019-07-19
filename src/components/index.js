@@ -7,11 +7,14 @@ import ThemeModeSwitch from "./themeModeSwitch";
 
 function App() {
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  const themeBg = `${darkMode ? "light" : "dark"}`;
+  const themeFont = `${darkMode ? "light-font" : "dark-font"}`;
+
   return (
-    <div className={`${darkMode ? "light" : "dark"}`}>
+    <div className={themeBg}>
       <div className="App">
         <header className="App-header">
-          <h2 className={darkMode ? "light" : "dark"}>React TodoList</h2>
+          <h2 className={themeFont}>React TodoList</h2>
           <ThemeModeSwitch onChange={() => toggleDarkMode()} />
         </header>
         <TodoList />

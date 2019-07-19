@@ -1,13 +1,19 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
 import "./index.css";
 import locale from "antd/lib/date-picker/locale/zh_TW";
 
 import moment from "moment";
 import { Button, DatePicker, List, Icon, Input, Tooltip } from "antd";
 
+import DarkModeContext from "../hooks/useContextWrapper/DarkModeContext";
 import editListReducer from "./reducer";
 
 function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
+  //global theme mode
+  const { darkMode } = useContext(DarkModeContext);
+  const themeFont = `${darkMode ? "light-font" : "dark-font"}`;
+  const themeBg = `${darkMode ? "light" : "dark"}`;
+
   const [editState, setEditState] = useState(true);
 
   const [todo, dispatchTodoItem] = useReducer(editListReducer, { todoItem: todoItemDataSource });
@@ -22,21 +28,21 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
       <div className="todoList-item">
         {editState && (
           <Button
-            className="todoList-item-ctrl"
+            className={`todoList-item-ctrl ${themeBg}`}
             style={{ color: todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
             onClick={markTodoDone}
             icon={"check"}
           />
         )}
-        <div className={todoDoneState ? "todoList-done" : undefined}>
+        <div className={`${todoDoneState ? "todoList-done" : undefined} ${themeFont}`}>
           {editState ? (
             <div className={`todoList-item-text`}>
-              <div className={`todoList-item-text-title`}>{todoItemDataSource.title}</div>
-              <div className="todoList-item-text-content">{todoItemDataSource.content}</div>
+              <div className={`todoList-item-text-title ${themeFont}`}>{todoItemDataSource.title}</div>
+              <div className={`todoList-item-text-content ${themeFont}`}>{todoItemDataSource.content}</div>
               {todoItemDataSource.date !== "" && (
-                <div className="todoList-item-text-date">
+                <div className={`todoList-item-text-date`}>
                   <Icon style={{ color: "#1a73e8" }} type="calendar" />
-                  <span>{todoItemDataSource.date}</span>
+                  <span className={themeFont}>{todoItemDataSource.date}</span>
                 </div>
               )}
             </div>
@@ -70,10 +76,14 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
       {/* ctrl */}
       <div className="todoList-ctrl">
         <Tooltip title="編輯詳細資訊" placement="bottom">
-          <Button className="todoList-item-ctrl" onClick={editTodoItem} icon={editState ? "form" : "check"} />
+          <Button
+            className={`todoList-item-ctrl ${themeBg} ${themeFont}`}
+            onClick={editTodoItem}
+            icon={editState ? "form" : "check"}
+          />
         </Tooltip>
         <Tooltip title="刪除" placement="bottom">
-          <Button className="todoList-item-ctrl" onClick={removeTodoItem} icon="delete" />
+          <Button className={`todoList-item-ctrl ${themeBg} ${themeFont}`} onClick={removeTodoItem} icon="delete" />
         </Tooltip>
       </div>
     </List.Item>

@@ -24,7 +24,19 @@
     line-height: 2.625rem;
 }
 
+
 .dark {
     background: #222222;
-    color: #cfcfcf;
+}
+
+.dark-font {
+    color: #ececec;
+}
+
+.light {
+    background: #ffffff;
+}
+
+.light-font {
+    color: #222222;
 }
