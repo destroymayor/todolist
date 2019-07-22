@@ -28,13 +28,3 @@
 .todoList-AddBtn:focus {
     outline: none;
 }
-
-.todoList-form-item-date-dark>div>input {
-    background-color: #222222;
-    color: #ececec;
-}
-
-.todoList-form-item-date-light>div>input {
-    background-color: #ffffff;
-    color: #222222;
-}

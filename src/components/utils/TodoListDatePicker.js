@@ -6,11 +6,11 @@ import moment from "moment";
 function TodoListDatePicker({ theme, defaultValue, onChange }) {
   return (
     <DatePicker
-      className={`${theme ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
+      className={theme}
       locale={locale}
       format="YYYY-MM-DD"
       placeholder="新增日期/時間"
-      defaultValue={defaultValue !== "" && moment(defaultValue, "YYYY-MM-DD")}
+      defaultValue={defaultValue !== undefined ? moment(defaultValue, "YYYY-MM-DD") : undefined}
       onChange={(value, dateString) => onChange(dateString)}
     />
   );

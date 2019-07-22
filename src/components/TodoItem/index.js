@@ -1,10 +1,11 @@
 import React, { useState, useReducer, useContext } from "react";
 import "./index.css";
 
+import moment from "moment";
 import { Button, List, Icon, Input, Tooltip } from "antd";
 
 import TodoListDatePicker from "../utils/TodoListDatePicker";
-import DarkModeContext from "../hooks/useContextWrapper/DarkModeContext";
+import { DarkModeContext } from "../hooks/useContextWrapper";
 import editListReducer from "./reducer";
 
 const { TextArea } = Input;
@@ -26,6 +27,8 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
     editTodoItemText(todo.todoItem);
   };
 
+  const DateIsAfter = moment(todoItemDataSource.date).isAfter(moment().format("YYYY-MM-DD"));
+
   return (
     <List.Item className="todoItem">
       <div className="todoList-item">
@@ -44,7 +47,7 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
               <div className={`todoList-item-text-content ${themeFont}`}>{todoItemDataSource.content}</div>
               {todoItemDataSource.date !== "" && (
                 <div className={`todoList-item-text-date`}>
-                  <Icon style={{ color: "#1a73e8" }} type="calendar" />
+                  <Icon style={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }} type="calendar" />
                   <span className={themeFont}>{todoItemDataSource.date}</span>
                 </div>
               )}
@@ -64,7 +67,7 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
                 onChange={e => editContent(e.target.value)}
               />
               <TodoListDatePicker
-                theme={theme.darkMode}
+                theme={`${theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
                 format="YYYY-MM-DD"
                 placeholder="新增日期/時間"
                 defaultValue={todo.todoItem.date}

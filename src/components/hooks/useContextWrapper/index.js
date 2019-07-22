@@ -1,6 +1,6 @@
-import React, { useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 
-import DarkModeContext from "./DarkModeContext";
+const DarkModeContext = createContext({ darkMode: true });
 
 const themeReducer = (state, action) => {
   switch (action.type) {
@@ -12,10 +12,10 @@ const themeReducer = (state, action) => {
   }
 };
 
-const useContextWrapper = ({ children }) => {
+const UseContextWrapper = ({ children }) => {
   const [theme, DarkModeDispatch] = useReducer(themeReducer, true);
 
   return <DarkModeContext.Provider value={{ theme, DarkModeDispatch }}>{children}</DarkModeContext.Provider>;
 };
 
-export default useContextWrapper;
+export { DarkModeContext, UseContextWrapper };
