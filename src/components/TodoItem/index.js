@@ -36,7 +36,7 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
             icon={"check"}
           />
         )}
-        <div className={`${todoDoneState ? "todoList-done" : undefined} ${themeFont}`}>
+        <div className={`${todoDoneState ? "todoList-done" : ""} ${themeFont}`}>
           {editState ? (
             <div className={`todoList-item-text`}>
               <div className={`todoList-item-text-title ${themeFont}`}>{todoItemDataSource.title}</div>
@@ -49,21 +49,21 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
               )}
             </div>
           ) : (
-            <div className="todoList-item-edit">
+            <div className={"todoList-item-edit"}>
               <Input
-                className="todoList-item-edit-component"
+                className={`todoList-item-edit-component ${themeBg} ${themeFont}`}
                 value={todo.todoItem.title}
                 placeholder="輸入標題"
                 onChange={e => editTitle(e.target.value)}
               />
               <Input
-                className="todoList-item-edit-component"
+                className={`todoList-item-edit-component ${themeBg} ${themeFont}`}
                 value={todo.todoItem.content}
                 placeholder="輸入詳細內容"
                 onChange={e => editContent(e.target.value)}
               />
               <DatePicker
-                className="todoList-item-edit-component"
+                className={`${theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
                 locale={locale}
                 format="YYYY-MM-DD"
                 placeholder="新增日期/時間"
