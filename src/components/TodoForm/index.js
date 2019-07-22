@@ -7,9 +7,9 @@ import { Button, DatePicker, Input } from "antd";
 const { TextArea } = Input;
 
 function TodoForm({ todoItemValue }) {
-  const { darkMode } = useContext(DarkModeContext);
-  const themeMode = `${darkMode ? "light" : "dark"}`;
-  const themeFont = `${darkMode ? "light-font" : " dark-font"}`;
+  const { theme } = useContext(DarkModeContext);
+  const themeMode = `${theme.darkMode ? "dark" : "light"}`;
+  const themeFont = `${theme.darkMode ? "dark-font" : " light-font"}`;
 
   const [inputTodoListTitle, setInputTodoListTitle] = useState({ title: "", content: "", date: "" });
   const inputRef = useRef();
@@ -47,7 +47,7 @@ function TodoForm({ todoItemValue }) {
           value={inputTodoListTitle.content}
         />
         <DatePicker
-          className={`${darkMode ? "todoList-form-item-date-light" : "todoList-form-item-date-dark"}`}
+          className={`${theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
           locale={locale}
           format="YYYY-MM-DD"
           placeholder="新增日期/時間"

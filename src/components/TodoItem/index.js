@@ -9,10 +9,9 @@ import DarkModeContext from "../hooks/useContextWrapper/DarkModeContext";
 import editListReducer from "./reducer";
 
 function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
-  //global theme mode
-  const { darkMode } = useContext(DarkModeContext);
-  const themeFont = `${darkMode ? "light-font" : "dark-font"}`;
-  const themeBg = `${darkMode ? "light" : "dark"}`;
+  const { theme } = useContext(DarkModeContext);
+  const themeBg = `${theme.darkMode ? "dark" : "light"}`;
+  const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
   const [editState, setEditState] = useState(true);
 
