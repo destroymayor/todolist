@@ -1,12 +1,12 @@
 import React, { useState, useRef, useContext } from "react";
 import "./index.css";
-import locale from "antd/lib/date-picker/locale/zh_TW";
-
+import { Button, Input } from "antd";
 import DarkModeContext from "../hooks/useContextWrapper/DarkModeContext";
-import { Button, DatePicker, Input } from "antd";
+
+import TodoListDatePicker from "../utils/TodoListDatePicker";
 const { TextArea } = Input;
 
-function TodoForm({ todoItemValue }) {
+const TodoForm = ({ todoItemValue }) => {
   const { theme } = useContext(DarkModeContext);
   const themeMode = `${theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${theme.darkMode ? "dark-font" : " light-font"}`;
@@ -46,12 +46,10 @@ function TodoForm({ todoItemValue }) {
           }}
           value={inputTodoListTitle.content}
         />
-        <DatePicker
-          className={`${theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
-          locale={locale}
-          format="YYYY-MM-DD"
-          placeholder="新增日期/時間"
-          onChange={(value, dateString) => setInputTodoListTitle(prevState => ({ ...prevState, date: dateString }))}
+        <TodoListDatePicker
+          theme={theme.darkMode}
+          defaultValue=""
+          onChange={dateString => setInputTodoListTitle(prevState => ({ ...prevState, date: dateString }))}
         />
       </div>
       <Button
@@ -64,6 +62,6 @@ function TodoForm({ todoItemValue }) {
       </Button>
     </form>
   );
-}
+};
 
 export default TodoForm;

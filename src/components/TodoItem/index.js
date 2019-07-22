@@ -1,14 +1,15 @@
 import React, { useState, useReducer, useContext } from "react";
 import "./index.css";
-import locale from "antd/lib/date-picker/locale/zh_TW";
 
-import moment from "moment";
-import { Button, DatePicker, List, Icon, Input, Tooltip } from "antd";
+import { Button, List, Icon, Input, Tooltip } from "antd";
 
+import TodoListDatePicker from "../utils/TodoListDatePicker";
 import DarkModeContext from "../hooks/useContextWrapper/DarkModeContext";
 import editListReducer from "./reducer";
 
-function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) {
+const { TextArea } = Input;
+
+const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const { theme } = useContext(DarkModeContext);
   const themeBg = `${theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
@@ -56,19 +57,18 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
                 placeholder="輸入標題"
                 onChange={e => editTitle(e.target.value)}
               />
-              <Input
+              <TextArea
                 className={`todoList-item-edit-component ${themeBg} ${themeFont}`}
                 value={todo.todoItem.content}
                 placeholder="輸入詳細內容"
                 onChange={e => editContent(e.target.value)}
               />
-              <DatePicker
-                className={`${theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
-                locale={locale}
+              <TodoListDatePicker
+                theme={theme.darkMode}
                 format="YYYY-MM-DD"
                 placeholder="新增日期/時間"
-                defaultValue={todo.todoItem.date !== "" && moment(todo.todoItem.date, "YYYY-MM-DD")}
-                onChange={(value, dateString) => editDate(dateString)}
+                defaultValue={todo.todoItem.date}
+                onChange={dateString => editDate(dateString)}
               />
             </div>
           )}
@@ -90,6 +90,6 @@ function TodoItem({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
       </div>
     </List.Item>
   );
-}
+};
 
 export default TodoItem;

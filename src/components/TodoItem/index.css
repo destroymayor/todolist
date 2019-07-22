@@ -17,8 +17,7 @@
     align-items: center;
 }
 
-.todoList-item-text,
-.todoList-item-edit {
+.todoList-item-text {
     display: flex;
     flex-direction: column;
     margin-left: 6px;
@@ -55,6 +54,7 @@
 
 .todoList-item-edit-component {
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* ctrl */

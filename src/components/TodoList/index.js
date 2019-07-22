@@ -11,7 +11,7 @@ const data = [
   { title: "項目2", content: "內容2", date: "2019-07-16", done: true }
 ];
 
-function TodoList() {
+const TodoList = () => {
   const [todo, dispatch] = useReducer(doToListReducer, { todoList: data });
 
   return (
@@ -34,6 +34,6 @@ function TodoList() {
       />
     </>
   );
-}
+};
 
 export default TodoList;
