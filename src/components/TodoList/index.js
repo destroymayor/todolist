@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
-import "./index.css";
+import "components/TodoList/index.css";
 import { List } from "antd";
 
-import doToListReducer from "./reducer";
-import TodoItem from "../TodoItem";
-import TodoFrom from "../TodoForm";
+import doToListReducer from "components/TodoList/reducer";
+import TodoItem from "components/TodoItem";
+import TodoFrom from "components/TodoForm";
 
 const data = [
   { title: "項目1", content: "內容1內容1內容1內容1內容2", date: "2019-07-16", done: false },

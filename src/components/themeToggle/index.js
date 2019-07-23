@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css";
+import "components/themeToggle/index.css";
 
 import { Switch } from "antd";
 

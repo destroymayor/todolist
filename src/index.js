@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import { UseContextWrapper } from "./hooks/useContextWrapper";
-import App from "./components";
+import { UseContextWrapper } from "hooks/useContextWrapper";
+import App from "components";
 
-import "./styles/theme.css";
-import * as serviceWorker from "./serviceWorker";
+import "styles/theme.css";
+import * as serviceWorker from "serviceWorker";
 
 ReactDOM.render(
   <UseContextWrapper>
@@ -16,8 +16,8 @@ ReactDOM.render(
 
 //hot reload
 if (module.hot) {
-  module.hot.accept("./components", () => {
-    const NextApp = require("./components").default;
+  module.hot.accept("components", () => {
+    const NextApp = require("components").default;
     ReactDOM.render(
       <UseContextWrapper>
         <NextApp />

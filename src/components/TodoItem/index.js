@@ -1,14 +1,14 @@
 import React, { useState, useReducer, useContext } from "react";
-import "./index.css";
+import "components/TodoItem/index.css";
 
 import moment from "moment";
 import { Button, List, Tooltip } from "antd";
 
-import { DarkModeContext } from "../../hooks/useContextWrapper";
-import editListReducer from "./reducer";
+import { DarkModeContext } from "hooks/useContextWrapper";
+import editListReducer from "components/TodoItem/reducer";
 
-import TodoListDatePicker from "../utils/TodoListDatePicker";
-import { TodoListInput, TodoListTextArea } from "../utils/TodoListInput";
+import TodoListDatePicker from "components/utils/TodoListDatePicker";
+import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
 
 const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const { theme } = useContext(DarkModeContext);

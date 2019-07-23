@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from "react";
-import "./index.css";
+import "components/index.css";
 
-import { DarkModeContext } from "../hooks/useContextWrapper";
-import TodoList from "./TodoList";
-import ThemeToggle from "./themeToggle";
+import { DarkModeContext } from "hooks/useContextWrapper";
+import TodoList from "components/TodoList";
+import ThemeToggle from "components/themeToggle";
 
 function App() {
   const { theme, DarkModeDispatch } = useContext(DarkModeContext);
