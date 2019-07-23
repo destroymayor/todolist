@@ -37,16 +37,21 @@
 }
 
 .todoList-item-text-date {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.todoList-item-text-date>div {
     font-size: 13px;
     border: 1px solid #e8eaed;
     border-radius: 4px;
     white-space: nowrap;
     padding: 5px 7px 5px 7px;
     margin-top: 6px;
-    width: 105px;
+    box-sizing: content-box;
 }
 
-.todoList-item-text-date>span {
+.todoList-item-text-date>div>span {
     margin-left: 5px;
 }
 

@@ -45,12 +45,14 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
             <div className={`todoList-item-text`}>
               <div className={`todoList-item-text-title ${themeFont}`}>{todoItemDataSource.title}</div>
               <div className={`todoList-item-text-content ${themeFont}`}>{todoItemDataSource.content}</div>
-              {todoItemDataSource.date !== "" && (
-                <div className={`todoList-item-text-date`}>
-                  <Icon style={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }} type="calendar" />
-                  <span className={themeFont}>{todoItemDataSource.date}</span>
-                </div>
-              )}
+              <div className={`todoList-item-text-date`}>
+                {todoItemDataSource.date !== "" && (
+                  <div>
+                    <Icon style={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }} type="calendar" />
+                    <span className={themeFont}>{todoItemDataSource.date}</span>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <div className={"todoList-item-edit"}>
