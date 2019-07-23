@@ -2,13 +2,13 @@ import React, { useState, useReducer, useContext } from "react";
 import "./index.css";
 
 import moment from "moment";
-import { Button, List, Icon, Input, Tooltip } from "antd";
+import { Button, List, Tooltip } from "antd";
 
-import TodoListDatePicker from "../utils/TodoListDatePicker";
-import { DarkModeContext } from "../hooks/useContextWrapper";
+import { DarkModeContext } from "../../hooks/useContextWrapper";
 import editListReducer from "./reducer";
 
-const { TextArea } = Input;
+import TodoListDatePicker from "../utils/TodoListDatePicker";
+import { TodoListInput, TodoListTextArea } from "../utils/TodoListInput";
 
 const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const { theme } = useContext(DarkModeContext);
@@ -34,6 +34,7 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
       <div className="todoList-item">
         {editState && (
           <Button
+            ghost={true}
             className={`todoList-item-ctrl ${themeBg}`}
             style={{ color: todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
             onClick={markTodoDone}
@@ -42,39 +43,36 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
         )}
         <div className={`${todoDoneState ? "todoList-done" : ""} ${themeFont}`}>
           {editState ? (
-            <div className={`todoList-item-text`}>
-              <div className={`todoList-item-text-title ${themeFont}`}>{todoItemDataSource.title}</div>
-              <div className={`todoList-item-text-content ${themeFont}`}>{todoItemDataSource.content}</div>
-              <div className={`todoList-item-text-date`}>
+            <div className={`todoList-item-text ${themeFont}`}>
+              <div className="todoList-item-text-title">{todoItemDataSource.title}</div>
+              <div className="todoList-item-text-content">{todoItemDataSource.content}</div>
+              <div className="todoList-item-text-date">
                 {todoItemDataSource.date !== "" && (
-                  <div>
-                    <Icon style={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }} type="calendar" />
+                  <Button
+                    ghost={theme.darkMode ? true : false}
+                    className={themeBg}
+                    style={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
+                    icon={"calendar"}>
                     <span className={themeFont}>{todoItemDataSource.date}</span>
-                  </div>
+                  </Button>
                 )}
               </div>
             </div>
           ) : (
-            <div className={"todoList-item-edit"}>
-              <Input
-                className={`todoList-item-edit-component ${themeBg} ${themeFont}`}
+            <div className={`todoList-item-edit`}>
+              <TodoListInput
+                classNames={`todoList-item-edit-component`}
                 value={todo.todoItem.title}
                 placeholder="輸入標題"
                 onChange={e => editTitle(e.target.value)}
               />
-              <TextArea
-                className={`todoList-item-edit-component ${themeBg} ${themeFont}`}
+              <TodoListTextArea
+                classNames={`todoList-item-edit-component`}
                 value={todo.todoItem.content}
                 placeholder="輸入詳細內容"
                 onChange={e => editContent(e.target.value)}
               />
-              <TodoListDatePicker
-                theme={`${theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light"}`}
-                format="YYYY-MM-DD"
-                placeholder="新增日期/時間"
-                defaultValue={todo.todoItem.date}
-                onChange={dateString => editDate(dateString)}
-              />
+              <TodoListDatePicker value={todo.todoItem.date} onChange={dateString => editDate(dateString)} />
             </div>
           )}
         </div>
@@ -84,13 +82,14 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
       <div className="todoList-ctrl">
         <Tooltip title="編輯詳細資訊" placement="bottom">
           <Button
+            ghost={true}
             className={`todoList-item-ctrl ${themeBg} ${themeFont}`}
             onClick={editTodoItem}
-            icon={editState ? "form" : "check"}
+            icon={editState ? "edit" : "check"}
           />
         </Tooltip>
         <Tooltip title="刪除" placement="bottom">
-          <Button className={`todoList-item-ctrl ${themeBg} ${themeFont}`} onClick={removeTodoItem} icon="delete" />
+          <Button ghost={true} className={`todoList-item-ctrl ${themeBg} ${themeFont}`} onClick={removeTodoItem} icon="delete" />
         </Tooltip>
       </div>
     </List.Item>

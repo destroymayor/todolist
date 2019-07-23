@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import "./index.css";
 
-import { DarkModeContext } from "./hooks/useContextWrapper";
+import { DarkModeContext } from "../hooks/useContextWrapper";
 import TodoList from "./TodoList";
 import ThemeToggle from "./themeToggle";
 
