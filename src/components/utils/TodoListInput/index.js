@@ -25,6 +25,7 @@ const TodoListTextArea = ({ classNames, rows, value, placeholder, onChange }) =>
   const { theme } = useContext(DarkModeContext);
   const themeBg = `${theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
+
   return (
     <TextArea
       className={`${classNames} ${themeBg} ${themeFont}`}

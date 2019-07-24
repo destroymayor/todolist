@@ -1,0 +1,45 @@
+/* dark */
+.todoList-form-item-date-dark>div>input {
+    background-color: #282c35;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.ant-calendar-panel-dark>div,
+.ant-calendar-panel-dark>div>div>div>div>input {
+    background-color: #282c35;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.ant-calendar-panel-dark>div>div>div:nth-child(2)>div.ant-calendar-header>div>span>a,
+.ant-calendar-panel-dark>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td>div {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.ant-calendar-panel-dark>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-next-month-btn-day>div,
+.ant-calendar-panel-dark>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-last-day-of-month>div {
+    color: rgba(129, 129, 129, 0.88);
+}
+
+
+/* ---------------------------------------------- */
+/* light */
+.todoList-form-item-date-light>div>input {
+    background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-calendar-panel-light>div,
+.ant-calendar-panel-light>div>div>div>div>input {
+    background-color: rgb(255, 255, 255);
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-calendar-panel-light>div>div>div:nth-child(2)>div.ant-calendar-header>div>span>a,
+.ant-calendar-panel-light>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td>div {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.ant-calendar-panel-light>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-next-month-btn-day>div,
+.ant-calendar-panel-light>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-last-day-of-month>div {
+    color: rgba(0, 0, 0, 0.25);
+}

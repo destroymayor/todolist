@@ -18,13 +18,3 @@ body {
 .light-font {
     color: #282c35;
 }
-
-.todoList-form-item-date-dark>div>input {
-    background-color: #282c35;
-    color: rgba(255, 255, 255, 0.88);
-}
-
-.todoList-form-item-date-light>div>input {
-    background-color: rgba(255, 255, 255, 0.88);
-    color: #282c35;
-}

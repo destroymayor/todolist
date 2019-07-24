@@ -2,17 +2,17 @@ import React, { useState, useReducer, useContext } from "react";
 import "components/TodoItem/index.css";
 
 import moment from "moment";
-import { Button, List, Tooltip } from "antd";
+import { List, Tooltip } from "antd";
 
 import { DarkModeContext } from "hooks/useContextWrapper";
 import editListReducer from "components/TodoItem/reducer";
 
+import TodoListButton from "components/utils/TodoListButton";
 import TodoListDatePicker from "components/utils/TodoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
 
 const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
   const [editState, setEditState] = useState(true);
@@ -33,10 +33,10 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
     <List.Item className="todoItem">
       <div className="todoList-item">
         {editState && (
-          <Button
+          <TodoListButton
             ghost={true}
-            className={`todoList-item-ctrl ${themeBg}`}
-            style={{ color: todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
+            classNames={"todoList-item-ctrl"}
+            styles={{ color: todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
             onClick={markTodoDone}
             icon={"check"}
           />
@@ -48,13 +48,12 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
               <div className="todoList-item-text-content">{todoItemDataSource.content}</div>
               <div className="todoList-item-text-date">
                 {todoItemDataSource.date !== "" && (
-                  <Button
+                  <TodoListButton
                     ghost={theme.darkMode ? true : false}
-                    className={themeBg}
-                    style={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
+                    styles={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
                     icon={"calendar"}>
                     <span className={themeFont}>{todoItemDataSource.date}</span>
-                  </Button>
+                  </TodoListButton>
                 )}
               </div>
             </div>
@@ -81,15 +80,15 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
       {/* ctrl */}
       <div className="todoList-ctrl">
         <Tooltip title="編輯詳細資訊" placement="bottom">
-          <Button
+          <TodoListButton
             ghost={true}
-            className={`todoList-item-ctrl ${themeBg} ${themeFont}`}
+            classNames={`todoList-item-ctrl`}
             onClick={editTodoItem}
             icon={editState ? "edit" : "check"}
           />
         </Tooltip>
         <Tooltip title="刪除" placement="bottom">
-          <Button ghost={true} className={`todoList-item-ctrl ${themeBg} ${themeFont}`} onClick={removeTodoItem} icon="delete" />
+          <TodoListButton ghost={true} classNames={`todoList-item-ctrl`} onClick={removeTodoItem} icon="delete" />
         </Tooltip>
       </div>
     </List.Item>
