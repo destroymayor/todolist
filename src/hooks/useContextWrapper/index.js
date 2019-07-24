@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 
 const DarkModeContext = createContext({ darkMode: true });
 
@@ -12,8 +12,14 @@ const themeReducer = (state, action) => {
   }
 };
 
+const localState = JSON.parse(localStorage.getItem("theme"));
+
 const UseContextWrapper = ({ children }) => {
-  const [theme, DarkModeDispatch] = useReducer(themeReducer, true);
+  const [theme, DarkModeDispatch] = useReducer(themeReducer, localState || true);
+
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
 
   return <DarkModeContext.Provider value={{ theme, DarkModeDispatch }}>{children}</DarkModeContext.Provider>;
 };

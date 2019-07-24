@@ -3,13 +3,12 @@ import "components/TodoItem/index.css";
 
 import moment from "moment";
 import { List, Tooltip } from "antd";
-
-import { DarkModeContext } from "hooks/useContextWrapper";
-import editListReducer from "components/TodoItem/reducer";
-
 import TodoListButton from "components/utils/TodoListButton";
 import TodoListDatePicker from "components/utils/TodoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
+
+import { DarkModeContext } from "hooks/useContextWrapper";
+import editListReducer from "components/TodoItem/reducer";
 
 const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const { theme } = useContext(DarkModeContext);

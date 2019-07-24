@@ -1,5 +1,6 @@
 /* dark */
-.todoList-form-item-date-dark>div>input {
+.todoList-form-item-date-dark>div>input,
+.todoList-form-item-date-dark>div>i {
     background-color: #282c35;
     color: rgba(255, 255, 255, 0.88);
 }
