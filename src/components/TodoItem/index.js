@@ -4,8 +4,7 @@ import "components/TodoItem/index.css";
 import moment from "moment";
 import { List, Tooltip } from "antd";
 import TodoListButton from "components/utils/TodoListButton";
-import TodoListDatePicker from "components/utils/TodoListDatePicker";
-import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
+import EditItem from "components/TodoItem/editItem";
 
 import { DarkModeContext } from "hooks/useContextWrapper";
 import editListReducer from "components/TodoItem/reducer";
@@ -57,21 +56,12 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
               </div>
             </div>
           ) : (
-            <div className={`todoList-item-edit`}>
-              <TodoListInput
-                classNames={`todoList-item-edit-component`}
-                value={todo.todoItem.title}
-                placeholder="輸入標題"
-                onChange={e => editTitle(e.target.value)}
-              />
-              <TodoListTextArea
-                classNames={`todoList-item-edit-component`}
-                value={todo.todoItem.content}
-                placeholder="輸入詳細內容"
-                onChange={e => editContent(e.target.value)}
-              />
-              <TodoListDatePicker value={todo.todoItem.date} onChange={dateString => editDate(dateString)} />
-            </div>
+            <EditItem
+              todoItemDataSource={todo.todoItem}
+              editTitle={title => editTitle(title)}
+              editContent={content => editContent(content)}
+              editDate={date => editDate(date)}
+            />
           )}
         </div>
       </div>
