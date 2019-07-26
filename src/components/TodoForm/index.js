@@ -8,7 +8,9 @@ import TodoListDatePicker from "components/utils/TodoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
 
 const TodoForm = ({ todoItemValue }) => {
-  const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, { todoInput: { title: "", content: "", date: "" } });
+  const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
+    todoInput: { title: "", content: "", date: "", done: false }
+  });
   const inputRef = useRef();
 
   const OnSubmit = e => {

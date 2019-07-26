@@ -20,11 +20,7 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
   const editContent = content => dispatchTodoItem({ type: "EDIT_CONTENT", todoList_content: content });
   const editDate = date => dispatchTodoItem({ type: "EDIT_DATE", todoList_date: date });
 
-  const editTodoItem = () => {
-    setEditState(!editState);
-    editTodoItemText(todo.todoItem);
-  };
-
+  const editTodoItem = () => setEditState(!editState);
   const DateIsAfter = moment(todoItemDataSource.date).isAfter(moment().format("YYYY-MM-DD"));
 
   return (

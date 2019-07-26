@@ -10,7 +10,7 @@ const inputTodoReducer = (state, action) => {
       return { ...state, todoInput: { ...state.todoInput, date: action.inputDate } };
 
     case "INPUT_CLEAR":
-      return { ...state, todoInput: { ...state.todoInput, title: "", content: "", date: "" } };
+      return { ...state, todoInput: { ...state.todoInput, title: "", content: "", date: "", done: false } };
 
     default:
       return state;
