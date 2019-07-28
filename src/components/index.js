@@ -2,8 +2,10 @@ import React, { useEffect, useContext } from "react";
 import "components/index.css";
 
 import { DarkModeContext } from "hooks/useContextWrapper";
+
 import TodoList from "components/TodoList";
-import ThemeToggle from "components/themeToggle";
+import ThemeToggle from "components/utils/ThemeToggle";
+import TodoListButton from "components/utils/TodoListButton";
 
 function App() {
   const { theme, DarkModeDispatch } = useContext(DarkModeContext);
@@ -18,7 +20,15 @@ function App() {
     <div className={`App ${themeBg}`}>
       <header className="App-header">
         <h2 className={themeFont}>React TodoList</h2>
-        <ThemeToggle onChange={() => DarkModeDispatch({ type: "DARK_MODE" })} />
+        <div>
+          <TodoListButton
+            ghost={true}
+            classNames={`github-link`}
+            href={"https://github.com/destroymayor/todolist"}
+            icon="github"
+          />
+          <ThemeToggle onChange={() => DarkModeDispatch({ type: "DARK_MODE" })} />
+        </div>
       </header>
       <TodoList />
     </div>

@@ -7,7 +7,7 @@ import TodoFrom from "components/TodoForm";
 import TodoItem from "components/TodoItem";
 
 const data = [
-  { title: "項目1", content: "內容1內容1內容1內容1內容2", date: "2019-07-16", done: false },
+  { title: "項目1", content: "內容1內容1", date: "2019-07-16", done: false },
   { title: "項目2", content: "內容2", date: "2019-07-16", done: true }
 ];
 

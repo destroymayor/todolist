@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "components/TodoItem/index.css";
 
 import moment from "moment";
@@ -7,20 +7,23 @@ import TodoListButton from "components/utils/TodoListButton";
 import EditItem from "components/TodoItem/editItem";
 
 import { DarkModeContext } from "hooks/useContextWrapper";
-import editListReducer from "components/TodoItem/reducer";
 
 const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const { theme } = useContext(DarkModeContext);
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
   const [editState, setEditState] = useState(true);
+  const [editTodo, setEditTodo] = useState({ title: "", content: "", date: "", done: false });
 
-  const [todo, dispatchTodoItem] = useReducer(editListReducer, { todoItem: todoItemDataSource });
-  const editTitle = title => dispatchTodoItem({ type: "EDIT_TITLE", todoList_title: title });
-  const editContent = content => dispatchTodoItem({ type: "EDIT_CONTENT", todoList_content: content });
-  const editDate = date => dispatchTodoItem({ type: "EDIT_DATE", todoList_date: date });
+  useEffect(() => {
+    setEditTodo(todoItemDataSource);
+  }, [todoItemDataSource]);
 
-  const editTodoItem = () => setEditState(!editState);
+  const editTodoItem = () => {
+    setEditState(!editState);
+    editTodoItemText(editTodo);
+  };
+
   const DateIsAfter = moment(todoItemDataSource.date).isAfter(moment().format("YYYY-MM-DD"));
 
   return (
@@ -53,10 +56,10 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
             </div>
           ) : (
             <EditItem
-              todoItemDataSource={todo.todoItem}
-              editTitle={title => editTitle(title)}
-              editContent={content => editContent(content)}
-              editDate={date => editDate(date)}
+              todoItemDataSource={editTodo}
+              editTitle={title => setEditTodo(prevState => ({ ...prevState, title }))}
+              editContent={content => setEditTodo(prevState => ({ ...prevState, content }))}
+              editDate={date => setEditTodo(prevState => ({ ...prevState, date }))}
             />
           )}
         </div>
