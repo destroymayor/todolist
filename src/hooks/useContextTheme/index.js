@@ -14,7 +14,7 @@ const themeReducer = (state, action) => {
 
 const localState = JSON.parse(localStorage.getItem("theme"));
 
-const UseContextWrapper = ({ children }) => {
+const UseContextTheme = ({ children }) => {
   const [theme, DarkModeDispatch] = useReducer(themeReducer, localState || true);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const UseContextWrapper = ({ children }) => {
   return <DarkModeContext.Provider value={{ theme, DarkModeDispatch }}>{children}</DarkModeContext.Provider>;
 };
 
-export { DarkModeContext, UseContextWrapper };
+export { DarkModeContext, UseContextTheme };

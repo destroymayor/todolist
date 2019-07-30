@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import "components/utils/themeToggle/index.css";
+import "components/utils/ThemeToggle/index.css";
 
 import { Switch } from "antd";
 
-import { DarkModeContext } from "hooks/useContextWrapper";
+import { DarkModeContext } from "hooks/useContextTheme";
 
 export default ({ onChange }) => {
   const { theme } = useContext(DarkModeContext);

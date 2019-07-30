@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { DarkModeContext } from "hooks/useContextWrapper";
+import { DarkModeContext } from "hooks/useContextTheme";
 
 import { Input } from "antd";
 const { TextArea } = Input;

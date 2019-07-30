@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button } from "antd";
 
-import { DarkModeContext } from "hooks/useContextWrapper";
+import { DarkModeContext } from "hooks/useContextTheme";
 
 const TodoListButton = ({ ghost, classNames, href, styles, icon, children, onClick }) => {
   const { theme } = useContext(DarkModeContext);

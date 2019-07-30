@@ -1,29 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import { UseContextWrapper } from "hooks/useContextWrapper";
-import App from "components";
-
+import Page from "components";
+import { UseContextTheme } from "hooks/useContextTheme";
 import "styles/theme.css";
 import * as serviceWorker from "serviceWorker";
 
-ReactDOM.render(
-  <UseContextWrapper>
-    <App />
-  </UseContextWrapper>,
-  document.getElementById("root")
-);
+const App = () => {
+  return (
+    <UseContextTheme>
+      <Page />
+    </UseContextTheme>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
 
 //hot reload
 if (module.hot) {
   module.hot.accept("components", () => {
-    const NextApp = require("components").default;
-    ReactDOM.render(
-      <UseContextWrapper>
-        <NextApp />
-      </UseContextWrapper>,
-      document.getElementById("root")
-    );
+    ReactDOM.render(<App />, document.getElementById("root"));
   });
 }
 

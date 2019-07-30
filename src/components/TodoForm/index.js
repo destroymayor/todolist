@@ -1,13 +1,15 @@
 import React, { useReducer, useRef } from "react";
 import "components/TodoForm/index.css";
 
+//components
 import { Button } from "antd";
-import inputTodoReducer from "components/TodoForm/reducer";
-
 import TodoListDatePicker from "components/utils/TodoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
 
-const TodoForm = ({ todoItemValue }) => {
+// reducer
+import inputTodoReducer from "components/TodoForm/reducer";
+
+export default ({ todoItemValue }) => {
   const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
     todoInput: { title: "", content: "", date: "", done: false }
   });
@@ -54,5 +56,3 @@ const TodoForm = ({ todoItemValue }) => {
     </form>
   );
 };
-
-export default TodoForm;
