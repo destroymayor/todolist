@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "components/TodoItem/index.css";
+import "components/todoItem/todoItem.css";
 
 import { List, Tooltip } from "antd";
-import TodoListButton from "components/utils/TodoListButton";
-import ItemContent from "components/TodoItem/ItemContent";
-import EditItem from "components/TodoItem/editItem";
+import TodoListButton from "components/utils/todoListButton";
+
+import ItemContent from "components/todoItem/todoItem-itemContent";
+import EditItem from "components/todoItem/todoItem-editItem";
 
 export default ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const [editState, setEditState] = useState(true);

@@ -4,9 +4,9 @@ import "components/index.css";
 import { TodoListProvider } from "hooks/useContextTodoList";
 import { DarkModeContext } from "hooks/useContextTheme";
 
-import TodoList from "components/TodoList";
-import ThemeToggle from "components/utils/ThemeToggle";
-import TodoListButton from "components/utils/TodoListButton";
+import TodoList from "components/todoList/todoList";
+import ThemeToggle from "components/utils/themeToggle";
+import TodoListButton from "components/utils/todoListButton";
 
 export default () => {
   const { theme, DarkModeDispatch } = useContext(DarkModeContext);

@@ -1,7 +1,7 @@
 import React from "react";
 
-import TodoListDatePicker from "components/utils/TodoListDatePicker";
-import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
+import TodoListDatePicker from "components/utils/todoListDatePicker";
+import { TodoListInput, TodoListTextArea } from "components/utils/todoListInput";
 
 export default ({ todoItemDataSource, editTitle, editContent, editDate }) => {
   return (

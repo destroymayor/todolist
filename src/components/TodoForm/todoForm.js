@@ -1,13 +1,13 @@
-import React, { useReducer, useRef } from "react";
-import "components/TodoForm/index.css";
+import React, { useReducer, useRef, useCallback } from "react";
+import "components/todoForm/todoForm.css";
 
 //components
 import { Button } from "antd";
-import TodoListDatePicker from "components/utils/TodoListDatePicker";
-import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
+import TodoListDatePicker from "components/utils/todoListDatePicker";
+import { TodoListInput, TodoListTextArea } from "components/utils/todoListInput";
 
 // reducer
-import inputTodoReducer from "components/TodoForm/reducer";
+import inputTodoReducer from "components/todoForm/reducer";
 
 export default ({ todoItemValue }) => {
   const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
@@ -15,14 +15,17 @@ export default ({ todoItemValue }) => {
   });
   const inputRef = useRef();
 
-  const OnSubmit = e => {
-    e.preventDefault();
-    if (!todo.todoInput) return;
+  const OnSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      if (!todo.todoInput) return;
 
-    todoItemValue(todo.todoInput);
-    inputRef.current.focus();
-    dispatchTodoInput({ type: "INPUT_CLEAR" });
-  };
+      todoItemValue(todo.todoInput);
+      inputRef.current.focus();
+      dispatchTodoInput({ type: "INPUT_CLEAR" });
+    },
+    [todo.todoInput, todoItemValue]
+  );
 
   return (
     <form className="todoList-form" onSubmit={OnSubmit}>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "components/utils/ThemeToggle/index.css";
+import "components/utils/themeToggle/index.css";
 
 import { Switch } from "antd";
 

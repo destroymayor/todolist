@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
+
 import Page from "components";
-import { UseContextTheme } from "hooks/useContextTheme";
+import { ThemeProvider } from "hooks/useContextTheme";
 import "styles/theme.css";
 import * as serviceWorker from "serviceWorker";
 
 const App = () => {
   return (
-    <UseContextTheme>
+    <ThemeProvider>
       <Page />
-    </UseContextTheme>
+    </ThemeProvider>
   );
 };
 

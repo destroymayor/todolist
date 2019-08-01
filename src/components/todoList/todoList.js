@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import "components/TodoList/index.css";
+import "components/todoList/todoList.css";
 import { List } from "antd";
 
-import TodoFrom from "components/TodoForm";
-import TodoItem from "components/TodoItem";
+import TodoFrom from "components/todoForm/todoForm";
+import TodoItem from "components/todoItem/todoItem";
 
 import { TodoListContext } from "hooks/useContextTodoList";
 
