@@ -6,7 +6,7 @@ import TodoListButton from "components/utils/TodoListButton";
 import ItemContent from "components/TodoItem/ItemContent";
 import EditItem from "components/TodoItem/editItem";
 
-const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
+export default ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
   const [editState, setEditState] = useState(true);
   const [editTodo, setEditTodo] = useState({ title: "", content: "", date: "", done: false });
 
@@ -55,5 +55,3 @@ const TodoItem = ({ todoItemDataSource, todoDoneState, editTodoItemText, markTod
     </List.Item>
   );
 };
-
-export default TodoItem;

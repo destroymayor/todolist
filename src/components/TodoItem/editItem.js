@@ -3,7 +3,7 @@ import React from "react";
 import TodoListDatePicker from "components/utils/TodoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/TodoListInput";
 
-const EditItem = ({ todoItemDataSource, editTitle, editContent, editDate }) => {
+export default ({ todoItemDataSource, editTitle, editContent, editDate }) => {
   return (
     <div className={`todoList-item-edit`}>
       <TodoListInput
@@ -25,5 +25,3 @@ const EditItem = ({ todoItemDataSource, editTitle, editContent, editDate }) => {
     </div>
   );
 };
-
-export default EditItem;

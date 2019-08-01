@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 
 import TodoListButton from "components/utils/TodoListButton";
 
@@ -6,6 +6,7 @@ import { DarkModeContext } from "hooks/useContextTheme";
 import moment from "moment";
 
 export default ({ todoDoneState, todoItemDataSource }) => {
+  const [dateEditState, setDateEditState] = useState(true);
   const { theme } = useContext(DarkModeContext);
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
@@ -21,7 +22,8 @@ export default ({ todoDoneState, todoItemDataSource }) => {
           <TodoListButton
             ghost={theme.darkMode ? true : false}
             styles={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
-            icon={"calendar"}>
+            icon={"calendar"}
+            onClick={() => setDateEditState(!dateEditState)}>
             <span className={`${themeFont} ${TodoItemMarkDone}`}>{todoItemDataSource.date}</span>
           </TodoListButton>
         )}

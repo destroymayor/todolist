@@ -7,7 +7,7 @@ import moment from "moment";
 
 import { DarkModeContext } from "hooks/useContextTheme";
 
-function TodoListDatePicker({ value, onChange }) {
+export default ({ value, onChange }) => {
   const { theme } = useContext(DarkModeContext);
   const datePickerInputTheme = theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light";
   const datePickerDropdownTheme = theme.darkMode ? "ant-calendar-panel-dark" : "ant-calendar-panel-light";
@@ -24,6 +24,4 @@ function TodoListDatePicker({ value, onChange }) {
       onChange={(value, dateString) => onChange(dateString)}
     />
   );
-}
-
-export default TodoListDatePicker;
+};

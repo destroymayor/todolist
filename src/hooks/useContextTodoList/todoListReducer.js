@@ -1,4 +1,4 @@
-const doToListReducer = (state, action) => {
+const todoListReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM":
       return { ...state, todoList: [action.addTodoListItem, ...state.todoList] };
@@ -32,4 +32,4 @@ const doToListReducer = (state, action) => {
   }
 };
 
-export default doToListReducer;
+export default todoListReducer;

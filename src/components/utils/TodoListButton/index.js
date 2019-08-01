@@ -3,7 +3,7 @@ import { Button } from "antd";
 
 import { DarkModeContext } from "hooks/useContextTheme";
 
-const TodoListButton = ({ ghost, classNames, href, styles, icon, children, onClick }) => {
+export default ({ ghost, classNames, href, styles, icon, children, onClick }) => {
   const { theme } = useContext(DarkModeContext);
   const themeBg = `${theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
@@ -20,5 +20,3 @@ const TodoListButton = ({ ghost, classNames, href, styles, icon, children, onCli
     </Button>
   );
 };
-
-export default TodoListButton;
