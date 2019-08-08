@@ -6,7 +6,6 @@ import { DarkModeContext } from "hooks/useContextTheme";
 
 import TodoList from "components/todoList/todoList";
 import ThemeToggle from "components/utils/themeToggle";
-import TodoListButton from "components/utils/todoListButton";
 
 export default () => {
   const { theme, DarkModeDispatch } = useContext(DarkModeContext);
@@ -20,13 +19,15 @@ export default () => {
   return (
     <div className={`App ${themeBg}`}>
       <header className="App-header">
-        <h2 className={themeFont}>React TodoList</h2>
+        <h2 className={themeFont}>TodoList</h2>
         <div>
-          <TodoListButton
-            ghost={true}
-            classNames={`github-link`}
-            href={"https://github.com/destroymayor/todolist"}
-            icon="github"
+          <iframe
+            title="github-todolist"
+            src="https://ghbtns.com/github-btn.html?user=destroymayor&repo=todolist&type=star&count=true"
+            frameborder="0"
+            scrolling="0"
+            width="170px"
+            height="20px"
           />
           <ThemeToggle onChange={() => DarkModeDispatch({ type: "DARK_MODE" })} />
         </div>
