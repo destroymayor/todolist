@@ -13,6 +13,7 @@ export default ({ todoItemValue }) => {
   const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
     todoInput: { title: "", content: "", date: "", done: false }
   });
+
   const inputRef = useRef();
 
   const OnSubmit = useCallback(
@@ -31,7 +32,7 @@ export default ({ todoItemValue }) => {
     <form className="todoList-form" onSubmit={OnSubmit}>
       <div className="todoList-form-item">
         <TodoListInput
-          classNames={`todoList-input`}
+          classNames="todoList-input"
           refs={inputRef}
           onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
           value={todo.todoInput.title}
