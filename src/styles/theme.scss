@@ -1,0 +1,37 @@
+/* dark */
+$dark-background:#252931;
+$dark-color:rgba(255, 255, 255, 0.88);
+
+.dark {
+    background: $dark-background
+}
+
+.dark-font {
+    color: $dark-color
+}
+
+.dark-button {
+    background: $dark-background;
+    color: $dark-color;
+
+    &:hover {
+        color: rgba(212, 212, 212, 0.88);
+    }
+}
+
+/* light */
+$light-background:rgba(255, 255, 255, 0.88);
+$light-color:#282c35;
+
+.light {
+    background: $light-background;
+}
+
+.light-font {
+    color: $light-color;
+}
+
+.light-button {
+    background: $light-background;
+    color: $light-color;
+}

@@ -27,6 +27,21 @@ const todoListReducer = (state, action) => {
       ];
       return { ...state, todoList: finalTodoList };
 
+    case "SORT_ITEM_BY_DATE":
+      const todoList_SortItem = [...state.todoList];
+
+      const SortResult = todoList_SortItem.sort((after, before) => {
+        const SortMix =
+          Number(after.date.replace(new RegExp("-", "g"), "")) - Number(before.date.replace(new RegExp("-", "g"), ""));
+
+        const SortMax =
+          Number(before.date.replace(new RegExp("-", "g"), "")) - Number(after.date.replace(new RegExp("-", "g"), ""));
+
+        return action.SortState ? SortMax : SortMix;
+      });
+
+      return { ...state, todoList: SortResult };
+
     default:
       return state;
   }

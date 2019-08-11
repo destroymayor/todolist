@@ -32,10 +32,26 @@ $padding:10px;
 .todoForm-addBtn {
     align-self: center;
     width: 120px;
-    margin: $margin-top/2;
     font-size: 15px;
+    margin-left: $margin-left/2;
 
     &:focus {
         outline: none;
     }
+}
+
+// Form Edit Item /
+.todoForm-editItem {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: $margin-bottom;
+}
+
+.todoForm-editItem-addBtn,
+.todoForm-editItem-menu {
+    width: 120px;
+    font-size: 15px;
+    margin-left: $margin-left/2;
+    border: 0px solid rgba(0, 0, 0, 0);
 }

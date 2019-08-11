@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 
 import Page from "components";
 import { ThemeProvider } from "hooks/useContextTheme";
-import "styles/theme.css";
+import "styles/theme.scss";
 import * as serviceWorker from "serviceWorker";
 
 const App = () => {

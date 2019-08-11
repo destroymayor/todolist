@@ -1,15 +1,20 @@
-import React, { useState, useReducer, useRef, useCallback } from "react";
+import React, { useState, useReducer, useContext, useRef, useCallback } from "react";
 import "components/todoForm/todoForm.scss";
 
 //components
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/todoListInput";
 import TodoListButton from "components/utils/todoListButton";
+import TodoFormEditItem from "components/todoForm/todoForm-editItem";
 
 // reducer
 import inputTodoReducer from "components/todoForm/reducer";
 
+import { TodoListContext } from "hooks/useContextTodoList";
+
 export default props => {
+  const { todoListDispatch } = useContext(TodoListContext);
+
   const [todoEditState, setTodoEditState] = useState(false);
   const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
     todoInput: { title: "", content: "", date: "", done: false }
@@ -65,9 +70,10 @@ export default props => {
           </div>
         </form>
       ) : (
-        <TodoListButton ghost={false} classNames="todoForm-addBtn" icon="plus" onClick={() => setTodoEditState(true)}>
-          新增工作
-        </TodoListButton>
+        <TodoFormEditItem
+          TodoListAddOnClick={() => setTodoEditState(true)}
+          TodoListSortOnClick={sortState => todoListDispatch({ type: "SORT_ITEM_BY_DATE", SortState: sortState })}
+        />
       )}
     </>
   );

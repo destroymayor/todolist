@@ -5,13 +5,12 @@ import { DarkModeContext } from "hooks/useContextTheme";
 
 export default props => {
   const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark" : "light"}`;
-  const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
+  const themeBg = `${theme.darkMode ? "dark-button" : "light-button"}`;
 
   return (
     <Button
       ghost={props.ghost}
-      className={`${props.classNames} ${themeBg} ${themeFont}`}
+      className={`${props.classNames} ${themeBg} `}
       href={props.href}
       style={props.styles}
       icon={props.icon}
