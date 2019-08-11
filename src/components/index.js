@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import "components/index.css";
+import "components/index.scss";
 
 import { TodoListProvider } from "hooks/useContextTodoList";
 import { DarkModeContext } from "hooks/useContextTheme";
@@ -24,7 +24,7 @@ export default () => {
           <iframe
             title="github-todolist"
             src="https://ghbtns.com/github-btn.html?user=destroymayor&repo=todolist&type=star&count=true"
-            frameborder="0"
+            frameBorder="0"
             scrolling="0"
             width="170px"
             height="20px"

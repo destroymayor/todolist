@@ -1,0 +1,87 @@
+/* dark */
+$dark-background :#282c35;
+$dark-color:rgba(255, 255, 255, 0.88);
+
+.todoList-form-item-date-dark {
+    &>div>input {
+        background-color: $dark-background;
+        color: $dark-color;
+    }
+
+    &>div>i {
+        background-color: $dark-background;
+        color: $dark-color;
+    }
+}
+
+.ant-calendar-panel-dark {
+    &>div {
+        background-color: $dark-background;
+        color: $dark-color;
+    }
+
+    &>div>div>div>div>input {
+        background-color: $dark-background;
+        color: $dark-color;
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-header>div>span>a {
+        color: $dark-color;
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td>div {
+        color: $dark-color;
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-next-month-btn-day>div {
+        color: rgba(129, 129, 129, 0.88);
+
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-last-day-of-month>div {
+        color: rgba(129, 129, 129, 0.88);
+    }
+}
+
+
+
+
+/* ---------------------------------------------- */
+/* light */
+$light-background:rgb(255, 255, 255);
+$light-color:rgba(0, 0, 0, 0.65);
+
+.todoList-form-item-date-light {
+    &>div>input {
+        background-color: $light-background;
+        color: $light-color;
+    }
+}
+
+.ant-calendar-panel-light {
+    &>div {
+        background-color: $light-background;
+        color: $light-color;
+    }
+
+    &>div>div>div>div>input {
+        background-color: $light-background;
+        color: $light-color;
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-header>div>span>a {
+        color: rgba(0, 0, 0, 0.65);
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td>div {
+        color: rgba(0, 0, 0, 0.65);
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-next-month-btn-day>div {
+        color: rgba(0, 0, 0, 0.25);
+    }
+
+    &>div>div>div:nth-child(2)>div.ant-calendar-body>table>tbody>tr>td.ant-calendar-last-day-of-month>div {
+        color: rgba(0, 0, 0, 0.25);
+    }
+}

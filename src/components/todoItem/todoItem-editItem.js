@@ -3,24 +3,24 @@ import React from "react";
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/todoListInput";
 
-export default ({ todoItemDataSource, editTitle, editContent, editDate }) => {
+export default props => {
   return (
-    <div className={`todoList-item-edit`}>
+    <div>
       <TodoListInput
         classNames={`todoList-item-edit-component`}
-        value={todoItemDataSource.title}
+        value={props.todoItemDataSource.title}
         placeholder="輸入標題"
-        onChange={e => editTitle(e.target.value)}
+        onChange={e => props.editTitle(e.target.value)}
       />
       <TodoListTextArea
         classNames={`todoList-item-edit-component`}
-        value={todoItemDataSource.content}
+        value={props.todoItemDataSource.content}
         placeholder="輸入詳細內容"
-        onChange={e => editContent(e.target.value)}
+        onChange={e => props.editContent(e.target.value)}
       />
       <TodoListDatePicker
-        value={todoItemDataSource.date === "" ? undefined : todoItemDataSource.date}
-        onChange={dateString => editDate(dateString)}
+        value={props.todoItemDataSource.date === "" ? undefined : props.todoItemDataSource.date}
+        onChange={dateString => props.editDate(dateString)}
       />
     </div>
   );

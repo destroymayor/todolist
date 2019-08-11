@@ -1,0 +1,41 @@
+$margin-top:10px;
+$margin-bottom:10px;
+$margin-left:10px;
+$margin-right:10px;
+
+$padding:10px;
+
+.todoList-form {
+    margin-top: $margin-top;
+    margin-bottom: $margin-top;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: $padding;
+
+    .todoList-form-item {
+        margin: $margin-top/2;
+
+        .todoList-input {
+            padding: $padding;
+            margin-bottom: $margin-bottom;
+        }
+
+        .todoForm-closeBtn {
+            font-size: 15px;
+            border: 0px solid rgba(0, 0, 0, 0);
+        }
+    }
+}
+
+.todoForm-addBtn {
+    align-self: center;
+    width: 120px;
+    margin: $margin-top/2;
+    font-size: 15px;
+
+    &:focus {
+        outline: none;
+    }
+}

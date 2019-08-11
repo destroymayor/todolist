@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "components/todoItem/todoItem.css";
+import "components/todoItem/todoItem.scss";
 
 import { List, Tooltip } from "antd";
 import TodoListButton from "components/utils/todoListButton";
@@ -7,17 +7,17 @@ import TodoListButton from "components/utils/todoListButton";
 import ItemContent from "components/todoItem/todoItem-itemContent";
 import EditItem from "components/todoItem/todoItem-editItem";
 
-export default ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoDone, removeTodoItem }) => {
+export default props => {
   const [editState, setEditState] = useState(true);
   const [editTodo, setEditTodo] = useState({ title: "", content: "", date: "", done: false });
 
   useEffect(() => {
-    setEditTodo(todoItemDataSource);
-  }, [todoItemDataSource]);
+    setEditTodo(props.todoItemDataSource);
+  }, [props.todoItemDataSource]);
 
   const editTodoItem = () => {
     setEditState(!editState);
-    editTodoItemText(editTodo);
+    props.editTodoItemText(editTodo);
   };
 
   return (
@@ -26,12 +26,12 @@ export default ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoD
         <TodoListButton
           ghost={true}
           classNames={"todoList-item-ctrl"}
-          styles={{ color: todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
-          onClick={editState ? markTodoDone : editTodoItem}
+          styles={{ color: props.todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
+          onClick={editState ? props.markTodoDone : editTodoItem}
           icon={"check"}
         />
         {editState ? (
-          <ItemContent todoDoneState={todoDoneState} todoItemDataSource={todoItemDataSource} />
+          <ItemContent todoDoneState={props.todoDoneState} todoItemDataSource={props.todoItemDataSource} />
         ) : (
           <EditItem
             todoItemDataSource={editTodo}
@@ -41,7 +41,6 @@ export default ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoD
           />
         )}
       </div>
-
       {/* ctrl */}
       <div className="todoList-ctrl">
         {editState && (
@@ -50,7 +49,7 @@ export default ({ todoItemDataSource, todoDoneState, editTodoItemText, markTodoD
           </Tooltip>
         )}
         <Tooltip title="刪除" placement="bottom">
-          <TodoListButton ghost={true} classNames={`todoList-item-ctrl`} onClick={removeTodoItem} icon="delete" />
+          <TodoListButton ghost={true} classNames={`todoList-item-ctrl`} onClick={props.removeTodoItem} icon="delete" />
         </Tooltip>
       </div>
     </List.Item>

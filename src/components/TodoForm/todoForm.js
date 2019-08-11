@@ -1,15 +1,16 @@
-import React, { useReducer, useRef, useCallback } from "react";
-import "components/todoForm/todoForm.css";
+import React, { useState, useReducer, useRef, useCallback } from "react";
+import "components/todoForm/todoForm.scss";
 
 //components
-import { Button } from "antd";
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/todoListInput";
+import TodoListButton from "components/utils/todoListButton";
 
 // reducer
 import inputTodoReducer from "components/todoForm/reducer";
 
-export default ({ todoItemValue }) => {
+export default props => {
+  const [todoEditState, setTodoEditState] = useState(false);
   const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
     todoInput: { title: "", content: "", date: "", done: false }
   });
@@ -21,42 +22,53 @@ export default ({ todoItemValue }) => {
       e.preventDefault();
       if (!todo.todoInput) return;
 
-      todoItemValue(todo.todoInput);
+      props.todoItemValue(todo.todoInput);
       inputRef.current.focus();
       dispatchTodoInput({ type: "INPUT_CLEAR" });
     },
-    [todo.todoInput, todoItemValue]
+    [todo.todoInput, props]
   );
 
   return (
-    <form className="todoList-form" onSubmit={OnSubmit}>
-      <div className="todoList-form-item">
-        <TodoListInput
-          classNames="todoList-input"
-          refs={inputRef}
-          onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
-          value={todo.todoInput.title}
-          placeholder="輸入標題"
-        />
-        <TodoListTextArea
-          rows={4}
-          placeholder="輸入詳細內容"
-          onChange={e => dispatchTodoInput({ type: "INPUT_CONTENT", inputContent: e.target.value })}
-          value={todo.todoInput.content}
-        />
-        <TodoListDatePicker
-          value={todo.todoInput.date !== "" ? todo.todoInput.date : undefined}
-          onChange={dateString => dispatchTodoInput({ type: "INPUT_DATE", inputDate: dateString })}
-        />
-      </div>
-      <Button
-        htmlType="submit"
-        type="primary"
-        disabled={todo.todoInput.title !== "" ? false : true}
-        className="todoList-AddBtn"
-        icon="plus">
-        新增工作
-      </Button>
-    </form>
+    <>
+      {todoEditState ? (
+        <form className="todoList-form" onSubmit={OnSubmit}>
+          <div className="todoList-form-item">
+            <TodoListButton ghost={true} classNames="todoForm-closeBtn" icon="close" onClick={() => setTodoEditState(false)} />
+          </div>
+          <div className="todoList-form-item">
+            <TodoListInput
+              classNames="todoList-input"
+              refs={inputRef}
+              onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
+              value={todo.todoInput.title}
+              placeholder="輸入標題"
+            />
+            <TodoListTextArea
+              rows={4}
+              placeholder="輸入詳細內容"
+              onChange={e => dispatchTodoInput({ type: "INPUT_CONTENT", inputContent: e.target.value })}
+              value={todo.todoInput.content}
+            />
+            <TodoListDatePicker
+              value={todo.todoInput.date !== "" ? todo.todoInput.date : undefined}
+              onChange={dateString => dispatchTodoInput({ type: "INPUT_DATE", inputDate: dateString })}
+            />
+            <TodoListButton
+              ghost={false}
+              htmlType="submit"
+              disabled={todo.todoInput.title !== "" ? false : true}
+              classNames="todoForm-addBtn"
+              icon="plus">
+              新增工作
+            </TodoListButton>
+          </div>
+        </form>
+      ) : (
+        <TodoListButton ghost={false} classNames="todoForm-addBtn" icon="plus" onClick={() => setTodoEditState(true)}>
+          新增工作
+        </TodoListButton>
+      )}
+    </>
   );
 };

@@ -11,26 +11,20 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.App-header,
-.App-header>div {
+.App-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-}
 
-.App-header>h2 {
-    margin-top: 0;
-    margin-bottom: 0;
-    height: 42px;
-    line-height: 2.625rem;
-}
+    &>div {
+        @extend .App-header
+    }
 
-.github-link {
-    font-size: 20px;
-    border: 0px solid rgba(0, 0, 0, 0);
-}
-
-.github-link::hover {
-    color: #aaa;
+    &>h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 42px;
+        line-height: 2.625rem;
+    }
 }

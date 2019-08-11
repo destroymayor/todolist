@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import "components/todoList/todoList.css";
 import { List } from "antd";
 
 import TodoFrom from "components/todoForm/todoForm";
