@@ -12,7 +12,7 @@ const TodoListInput = props => {
 
   return (
     <Input
-      className={`${props.classNames} ${themeBg} ${themeFont}`}
+      className={`${props.classNames} ${themeBg} ${themeFont} `}
       ref={props.refs}
       value={props.value}
       placeholder={props.placeholder}

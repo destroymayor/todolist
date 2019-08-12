@@ -4,10 +4,8 @@ import todoListReducer from "hooks/useContextTodoList/todoListReducer";
 const TodoListContext = createContext();
 
 const data = {
-  todoList: [
-    { title: "項目1", content: "內容1內容1", date: "2019-07-16", done: false },
-    { title: "項目2", content: "內容2", date: "2019-07-16", done: true }
-  ]
+  todoList: [],
+  option: { SortState: true }
 };
 
 const localStorageTodoListData = JSON.parse(localStorage.getItem("todoList"));

@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import "components/utils/themeToggle/index.scss";
 
 import { Switch } from "antd";
 
@@ -8,7 +7,7 @@ export default props => {
   const { theme } = useContext(DarkModeContext);
   return (
     <Switch
-      className="theme-toggle"
+      style={{ backgroundColor: "#0f1114" }}
       checkedChildren="Light"
       unCheckedChildren="Dark"
       defaultChecked={!theme.darkMode}

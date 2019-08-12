@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "components/todoItem/todoItem.scss";
 
+//component
 import { List, Tooltip } from "antd";
 import TodoListButton from "components/utils/todoListButton";
-
 import ItemContent from "components/todoItem/todoItem-itemContent";
 import EditItem from "components/todoItem/todoItem-editItem";
+
+// global props
+import { DarkModeContext } from "hooks/useContextTheme";
 
 export default props => {
   const [editState, setEditState] = useState(true);
   const [editTodo, setEditTodo] = useState({ title: "", content: "", date: "", done: false });
+
+  const { theme } = useContext(DarkModeContext);
+  const themeBg = `${theme.darkMode ? "dark-todoItem" : "light-todoItem"}`;
 
   useEffect(() => {
     setEditTodo(props.todoItemDataSource);
@@ -21,7 +27,7 @@ export default props => {
   };
 
   return (
-    <List.Item className="todoItem">
+    <List.Item className={themeBg}>
       <div className="todoList-item">
         <TodoListButton
           ghost={true}

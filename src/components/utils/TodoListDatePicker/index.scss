@@ -2,27 +2,28 @@
 $dark-background :#282c35;
 $dark-color:rgba(255, 255, 255, 0.88);
 
+.darkMode-DatePicker {
+    background-color: $dark-background;
+    color: $dark-color;
+}
+
 .todoList-form-item-date-dark {
     &>div>input {
-        background-color: $dark-background;
-        color: $dark-color;
+        @extend .darkMode-DatePicker;
     }
 
     &>div>i {
-        background-color: $dark-background;
-        color: $dark-color;
+        @extend .darkMode-DatePicker;
     }
 }
 
 .ant-calendar-panel-dark {
     &>div {
-        background-color: $dark-background;
-        color: $dark-color;
+        @extend .darkMode-DatePicker;
     }
 
     &>div>div>div>div>input {
-        background-color: $dark-background;
-        color: $dark-color;
+        @extend .darkMode-DatePicker;
     }
 
     &>div>div>div:nth-child(2)>div.ant-calendar-header>div>span>a {
@@ -51,22 +52,24 @@ $dark-color:rgba(255, 255, 255, 0.88);
 $light-background:rgb(255, 255, 255);
 $light-color:rgba(0, 0, 0, 0.65);
 
+.lightMode-DatePicker {
+    background-color: $light-background;
+    color: $light-color;
+}
+
 .todoList-form-item-date-light {
     &>div>input {
-        background-color: $light-background;
-        color: $light-color;
+        @extend .lightMode-DatePicker;
     }
 }
 
 .ant-calendar-panel-light {
     &>div {
-        background-color: $light-background;
-        color: $light-color;
+        @extend .lightMode-DatePicker;
     }
 
     &>div>div>div>div>input {
-        background-color: $light-background;
-        color: $light-color;
+        @extend .lightMode-DatePicker;
     }
 
     &>div>div>div:nth-child(2)>div.ant-calendar-header>div>span>a {

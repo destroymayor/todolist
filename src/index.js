@@ -17,7 +17,6 @@ const App = () => {
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-//hot reload
 if (module.hot) {
   module.hot.accept("components", () => {
     ReactDOM.render(<App />, document.getElementById("root"));

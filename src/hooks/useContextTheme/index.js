@@ -15,7 +15,7 @@ const themeReducer = (state, action) => {
 const localState = JSON.parse(localStorage.getItem("theme"));
 
 const ThemeProvider = ({ children }) => {
-  const [theme, DarkModeDispatch] = useReducer(themeReducer, localState || { darkMode: true });
+  const [theme, DarkModeDispatch] = useReducer(themeReducer, localState || { darkMode: false });
 
   useEffect(() => {
     localStorage.setItem("theme", JSON.stringify(theme));

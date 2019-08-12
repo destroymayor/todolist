@@ -9,29 +9,27 @@ import TodoFormEditItem from "components/todoForm/todoForm-editItem";
 
 // reducer
 import inputTodoReducer from "components/todoForm/reducer";
-
 import { TodoListContext } from "hooks/useContextTodoList";
 
 export default props => {
-  const { todoListDispatch } = useContext(TodoListContext);
-
   const [todoEditState, setTodoEditState] = useState(false);
-  const [todo, dispatchTodoInput] = useReducer(inputTodoReducer, {
+
+  const { todo, todoListDispatch } = useContext(TodoListContext);
+  const [todoFormData, dispatchTodoInput] = useReducer(inputTodoReducer, {
     todoInput: { title: "", content: "", date: "", done: false }
   });
-
   const inputRef = useRef();
 
   const OnSubmit = useCallback(
     e => {
       e.preventDefault();
-      if (!todo.todoInput) return;
+      if (!todoFormData.todoInput) return;
 
-      props.todoItemValue(todo.todoInput);
+      props.todoItemValue(todoFormData.todoInput);
       inputRef.current.focus();
       dispatchTodoInput({ type: "INPUT_CLEAR" });
     },
-    [todo.todoInput, props]
+    [todoFormData.todoInput, props]
   );
 
   return (
@@ -46,23 +44,23 @@ export default props => {
               classNames="todoList-input"
               refs={inputRef}
               onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
-              value={todo.todoInput.title}
+              value={todoFormData.todoInput.title}
               placeholder="輸入標題"
             />
             <TodoListTextArea
               rows={4}
               placeholder="輸入詳細內容"
               onChange={e => dispatchTodoInput({ type: "INPUT_CONTENT", inputContent: e.target.value })}
-              value={todo.todoInput.content}
+              value={todoFormData.todoInput.content}
             />
             <TodoListDatePicker
-              value={todo.todoInput.date !== "" ? todo.todoInput.date : undefined}
+              value={todoFormData.todoInput.date !== "" ? todoFormData.todoInput.date : undefined}
               onChange={dateString => dispatchTodoInput({ type: "INPUT_DATE", inputDate: dateString })}
             />
             <TodoListButton
               ghost={false}
               htmlType="submit"
-              disabled={todo.todoInput.title !== "" ? false : true}
+              disabled={todoFormData.todoInput.title !== "" ? false : true}
               classNames="todoForm-addBtn"
               icon="plus">
               新增工作
@@ -72,7 +70,8 @@ export default props => {
       ) : (
         <TodoFormEditItem
           TodoListAddOnClick={() => setTodoEditState(true)}
-          TodoListSortOnClick={sortState => todoListDispatch({ type: "SORT_ITEM_BY_DATE", SortState: sortState })}
+          TodoListSortOnClick={() => todoListDispatch({ type: "SORT_ITEM_BY_DATE" })}
+          sortStateIcon={todo.option.SortState ? "sort-descending" : "sort-ascending"}
         />
       )}
     </>

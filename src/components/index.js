@@ -19,7 +19,7 @@ export default () => {
   return (
     <div className={`App ${themeBg}`}>
       <header className="App-header">
-        <h2 className={themeFont}>TodoList</h2>
+        <h2 className={themeFont}>Tasks</h2>
         <div>
           <iframe
             title="github-todolist"
