@@ -1,3 +1,3 @@
 ### React Hook TodoList
 
-#### [Online Demo](https://jared-chen.com/sideProject/todolist/index.html)
+#### [Online Demo](https://jared-chen.com/todolist/build/index.html)
