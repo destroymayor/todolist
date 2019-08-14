@@ -1,0 +1,31 @@
+.App-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &>h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+        color: #80868b;
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 2.625rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+}
+
+.App-header-date {
+    margin-top: 5px;
+    margin-left: 10px;
+    color: #80868b;
+}
+
+.App-header-Item {
+    @extend .App-header;
+
+    &>iframe {
+        margin-right: 5px;
+    }
+}

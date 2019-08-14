@@ -1,12 +1,17 @@
 import React, { useState, useContext } from "react";
 
 import TodoListButton from "components/utils/todoListButton";
+import TodoListDatePicker from "components/utils/todoListDatePicker";
 
 import { DarkModeContext } from "hooks/useContextTheme";
+import { TodoListContext } from "hooks/useContextTodoList";
+
 import moment from "moment";
 
 export default props => {
-  const [dateEditState, setDateEditState] = useState(true);
+  const [dateEditState, setDateEditState] = useState(false);
+
+  const { todoListDispatch } = useContext(TodoListContext);
   const { theme } = useContext(DarkModeContext);
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
@@ -19,13 +24,25 @@ export default props => {
       <div className="todoList-item-text-content">{props.todoItemDataSource.content}</div>
       <div className="todoList-item-text-date">
         {props.todoItemDataSource.date !== "" && (
-          <TodoListButton
-            ghost={theme.darkMode ? true : false}
-            styles={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
-            icon={"calendar"}
-            onClick={() => setDateEditState(!dateEditState)}>
-            <span className={`${themeFont} ${TodoItemMarkDone}`}>{props.todoItemDataSource.date}</span>
-          </TodoListButton>
+          <>
+            {dateEditState ? (
+              <TodoListDatePicker
+                open={dateEditState}
+                value={props.todoItemDataSource.date === "" ? undefined : props.todoItemDataSource.date}
+                onChange={dateString => {
+                  setDateEditState(!dateEditState);
+                }}
+              />
+            ) : (
+              <TodoListButton
+                ghost={theme.darkMode ? true : false}
+                styles={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
+                icon={"calendar"}
+                onClick={() => setDateEditState(!dateEditState)}>
+                <span className={`${themeFont} ${TodoItemMarkDone}`}>{props.todoItemDataSource.date}</span>
+              </TodoListButton>
+            )}
+          </>
         )}
       </div>
     </div>

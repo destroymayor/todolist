@@ -15,11 +15,13 @@ export default props => {
   return (
     <DatePicker
       allowClear={false}
-      className={datePickerInputTheme}
+      className={`${datePickerInputTheme} ${props.classNames}`}
       locale={locale}
       format="YYYY-MM-DD"
       placeholder="新增日期/時間"
       dropdownClassName={datePickerDropdownTheme}
+      style={props.styles}
+      open={props.open}
       value={props.value !== undefined ? moment(props.value, "YYYY-MM-DD") : undefined}
       onChange={(value, dateString) => props.onChange(dateString)}
     />

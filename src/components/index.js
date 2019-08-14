@@ -4,13 +4,12 @@ import "components/index.scss";
 import { TodoListProvider } from "hooks/useContextTodoList";
 import { DarkModeContext } from "hooks/useContextTheme";
 
+import Header from "components/header/header";
 import TodoList from "components/todoList/todoList";
-import ThemeToggle from "components/utils/themeToggle";
 
 export default () => {
-  const { theme, DarkModeDispatch } = useContext(DarkModeContext);
+  const { theme } = useContext(DarkModeContext);
   const themeBg = `${theme.darkMode ? "dark" : "light"}`;
-  const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
   useEffect(() => {
     document.getElementById("body").className = themeBg;
@@ -18,20 +17,7 @@ export default () => {
 
   return (
     <div className={`App ${themeBg}`}>
-      <header className="App-header">
-        <h2 className={themeFont}>Tasks</h2>
-        <div>
-          <iframe
-            title="github-todolist"
-            src="https://ghbtns.com/github-btn.html?user=destroymayor&repo=todolist&type=star&count=true"
-            frameBorder="0"
-            scrolling="0"
-            width="170px"
-            height="20px"
-          />
-          <ThemeToggle onChange={() => DarkModeDispatch({ type: "DARK_MODE" })} />
-        </div>
-      </header>
+      <Header />
       <TodoListProvider>
         <TodoList />
       </TodoListProvider>
