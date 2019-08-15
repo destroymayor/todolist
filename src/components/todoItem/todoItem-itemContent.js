@@ -4,14 +4,12 @@ import TodoListButton from "components/utils/todoListButton";
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 
 import { DarkModeContext } from "hooks/useContextTheme";
-import { TodoListContext } from "hooks/useContextTodoList";
 
 import moment from "moment";
 
 export default props => {
   const [dateEditState, setDateEditState] = useState(false);
 
-  const { todoListDispatch } = useContext(TodoListContext);
   const { theme } = useContext(DarkModeContext);
   const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
 
@@ -31,6 +29,7 @@ export default props => {
                 value={props.todoItemDataSource.date === "" ? undefined : props.todoItemDataSource.date}
                 onChange={dateString => {
                   setDateEditState(!dateEditState);
+                  props.editTodoItemDate(dateString);
                 }}
               />
             ) : (

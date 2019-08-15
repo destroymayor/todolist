@@ -37,7 +37,11 @@ export default props => {
           icon={"check"}
         />
         {editState ? (
-          <ItemContent todoDoneState={props.todoDoneState} todoItemDataSource={props.todoItemDataSource} />
+          <ItemContent
+            todoDoneState={props.todoDoneState}
+            todoItemDataSource={props.todoItemDataSource}
+            editTodoItemDate={date => props.editTodoItemText({ ...props.todoItemDataSource, date })}
+          />
         ) : (
           <EditItem
             todoItemDataSource={editTodo}
@@ -47,6 +51,7 @@ export default props => {
           />
         )}
       </div>
+
       {/* ctrl */}
       <div className="todoList-ctrl">
         {editState && (

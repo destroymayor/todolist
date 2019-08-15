@@ -13,7 +13,7 @@ export default () => {
     <header className="App-header">
       <div className="App-header-Item">
         <h2>Tasks</h2>
-        <div className="App-header-date">{moment().format("YYYY-DD-MM")}</div>
+        <div className="App-header-date">{moment().format("YYYY-MM-DD")}</div>
       </div>
       <div className="App-header-Item">
         <iframe
