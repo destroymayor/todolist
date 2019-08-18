@@ -9,12 +9,12 @@ import TodoFormEditItem from "components/todoForm/todoForm-editItem";
 
 // reducer
 import inputTodoReducer from "components/todoForm/reducer";
-import { TodoListContext } from "hooks/useContextTodoList";
+import { ReducerContext } from "reducers";
 
 export default props => {
   const [todoEditState, setTodoEditState] = useState(false);
 
-  const { todo, todoListDispatch } = useContext(TodoListContext);
+  const [state, dispatch] = useContext(ReducerContext);
   const [todoFormData, dispatchTodoInput] = useReducer(inputTodoReducer, {
     todoInput: { title: "", content: "", date: "", done: false }
   });
@@ -37,11 +37,11 @@ export default props => {
       {todoEditState ? (
         <form className="todoList-form" onSubmit={OnSubmit}>
           <div className="todoList-form-item">
-            <TodoListButton ghost={true} classNames="todoForm-closeBtn" icon="close" onClick={() => setTodoEditState(false)} />
+            <TodoListButton ghost={true} classnames="todoForm-closeBtn" icon="close" onClick={() => setTodoEditState(false)} />
           </div>
           <div className="todoList-form-item">
             <TodoListInput
-              classNames="todoList-input"
+              className="todoList-input"
               refs={inputRef}
               onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
               value={todoFormData.todoInput.title}
@@ -61,7 +61,7 @@ export default props => {
               ghost={false}
               htmlType="submit"
               disabled={todoFormData.todoInput.title !== "" ? false : true}
-              classNames="todoForm-addBtn"
+              classnames="todoForm-addBtn"
               icon="plus">
               新增工作
             </TodoListButton>
@@ -70,8 +70,8 @@ export default props => {
       ) : (
         <TodoFormEditItem
           TodoListAddOnClick={() => setTodoEditState(true)}
-          TodoListSortOnClick={() => todoListDispatch({ type: "SORT_ITEM_BY_DATE" })}
-          sortStateIcon={todo.option.SortState ? "sort-descending" : "sort-ascending"}
+          TodoListSortOnClick={() => dispatch({ type: "SORT_ITEM_BY_DATE" })}
+          sortStateIcon={state.todo.option.SortState ? "sort-descending" : "sort-ascending"}
         />
       )}
     </>

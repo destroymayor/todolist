@@ -2,15 +2,16 @@ import React, { useContext } from "react";
 
 import { Switch } from "antd";
 
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
+
 export default props => {
-  const { theme } = useContext(DarkModeContext);
+  const [state] = useContext(ReducerContext);
   return (
     <Switch
       style={{ backgroundColor: "#0f1114" }}
       checkedChildren="Light"
       unCheckedChildren="Dark"
-      defaultChecked={!theme.darkMode}
+      defaultChecked={!state.theme.darkMode}
       onChange={props.onChange}
     />
   );

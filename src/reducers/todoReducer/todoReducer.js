@@ -1,4 +1,11 @@
-const todoListReducer = (state, action) => {
+const initState = {
+  todoList: [],
+  option: { SortState: true }
+};
+
+const localStorageTodoData = JSON.parse(localStorage.getItem("test"));
+
+const todoReducer = (state = localStorageTodoData || initState, action) => {
   switch (action.type) {
     // 增加項目
     case "ADD_ITEM":
@@ -49,4 +56,4 @@ const todoListReducer = (state, action) => {
   }
 };
 
-export default todoListReducer;
+export { todoReducer };

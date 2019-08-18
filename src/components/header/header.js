@@ -1,13 +1,18 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import "components/header/header.scss";
 
 import moment from "moment";
 
-import { DarkModeContext } from "hooks/useContextTheme";
 import ThemeToggle from "components/utils/themeToggle";
 
+import { ReducerContext } from "reducers";
+
 export default () => {
-  const { DarkModeDispatch } = useContext(DarkModeContext);
+  const [state, dispatch] = useContext(ReducerContext);
+
+  useEffect(() => {
+    localStorage.setItem("themeMode", JSON.stringify(state.theme));
+  }, [state.theme]);
 
   return (
     <header className="App-header">
@@ -24,7 +29,7 @@ export default () => {
           width="80px"
           height="20px"
         />
-        <ThemeToggle onChange={() => DarkModeDispatch({ type: "DARK_MODE" })} />
+        <ThemeToggle onChange={() => dispatch({ type: "DARK_MODE" })} />
       </div>
     </header>
   );

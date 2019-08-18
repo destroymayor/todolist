@@ -1,40 +1,24 @@
 import React, { useContext } from "react";
 
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
 
 import { Input } from "antd";
 const { TextArea } = Input;
 
 const TodoListInput = props => {
-  const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark" : "light"}`;
-  const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
+  const [state] = useContext(ReducerContext);
+  const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
+  const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
 
-  return (
-    <Input
-      className={`${props.classNames} ${themeBg} ${themeFont} `}
-      ref={props.refs}
-      value={props.value}
-      placeholder={props.placeholder}
-      onChange={props.onChange}
-    />
-  );
+  return <Input {...props} className={`${props.className} ${themeBg} ${themeFont} `} ref={props.refs} />;
 };
 
 const TodoListTextArea = props => {
-  const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark" : "light"}`;
-  const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
+  const [state] = useContext(ReducerContext);
+  const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
+  const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
 
-  return (
-    <TextArea
-      className={`${props.classNames} ${themeBg} ${themeFont}`}
-      rows={props.rows}
-      value={props.value}
-      placeholder={props.placeholder}
-      onChange={props.onChange}
-    />
-  );
+  return <TextArea {...props} className={`${props.className} ${themeBg} ${themeFont}`} />;
 };
 
 export { TodoListInput, TodoListTextArea };

@@ -5,19 +5,19 @@ import locale from "antd/lib/date-picker/locale/zh_TW";
 import { DatePicker } from "antd";
 import moment from "moment";
 
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
 
 export default props => {
-  const { theme } = useContext(DarkModeContext);
-  const datePickerInputTheme = theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light";
-  const datePickerDropdownTheme = theme.darkMode ? "ant-calendar-panel-dark" : "ant-calendar-panel-light";
+  const [state] = useContext(ReducerContext);
+  const datePickerInputTheme = state.theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light";
+  const datePickerDropdownTheme = state.theme.darkMode ? "ant-calendar-panel-dark" : "ant-calendar-panel-light";
 
   return (
     <DatePicker
       {...props}
       allowClear={false}
       showToday={false}
-      className={`${datePickerInputTheme} ${props.classNames}`}
+      className={`${datePickerInputTheme}`}
       locale={locale}
       format="YYYY-MM-DD"
       placeholder="新增日期/時間"

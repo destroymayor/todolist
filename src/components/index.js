@@ -1,15 +1,14 @@
 import React, { useEffect, useContext } from "react";
 import "components/index.scss";
 
-import { TodoListProvider } from "hooks/useContextTodoList";
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
 
 import Header from "components/header/header";
 import TodoList from "components/todoList/todoList";
 
 export default () => {
-  const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark" : "light"}`;
+  const [state] = useContext(ReducerContext);
+  const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
 
   useEffect(() => {
     document.getElementById("body").className = themeBg;
@@ -18,9 +17,7 @@ export default () => {
   return (
     <div className={`App ${themeBg}`}>
       <Header />
-      <TodoListProvider>
-        <TodoList />
-      </TodoListProvider>
+      <TodoList />
     </div>
   );
 };

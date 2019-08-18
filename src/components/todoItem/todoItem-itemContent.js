@@ -3,15 +3,14 @@ import React, { useState, useContext } from "react";
 import TodoListButton from "components/utils/todoListButton";
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
 
 import moment from "moment";
 
 export default props => {
   const [dateEditState, setDateEditState] = useState(false);
-
-  const { theme } = useContext(DarkModeContext);
-  const themeFont = `${theme.darkMode ? "dark-font" : "light-font"}`;
+  const [state] = useContext(ReducerContext);
+  const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
 
   const DateIsAfter = moment(props.todoItemDataSource.date).isAfter(moment().format("YYYY-MM-DD"));
   const TodoItemMarkDone = `${props.todoDoneState ? "todoList-done" : ""} ${themeFont}`;
@@ -34,7 +33,7 @@ export default props => {
               />
             ) : (
               <TodoListButton
-                ghost={theme.darkMode ? true : false}
+                ghost={state.theme.darkMode ? true : false}
                 styles={{ color: DateIsAfter ? "#1a73e8" : "#d93025" }}
                 icon={"calendar"}
                 onClick={() => setDateEditState(!dateEditState)}>

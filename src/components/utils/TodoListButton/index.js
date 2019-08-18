@@ -1,23 +1,14 @@
 import React, { useContext } from "react";
 import { Button } from "antd";
 
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
 
 export default props => {
-  const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark-button" : "light-button"}`;
+  const [state] = useContext(ReducerContext);
+  const themeBg = `${state.theme.darkMode ? "dark-button" : "light-button"}`;
 
   return (
-    <Button
-      ghost={props.ghost}
-      className={`${props.classNames} ${themeBg} `}
-      href={props.href}
-      style={props.styles}
-      icon={props.icon}
-      onClick={props.onClick}
-      htmlType={props.htmlType}
-      type={props.type}
-      disabled={props.disabled}>
+    <Button {...props} className={`${themeBg} ${props.classnames}`} style={props.styles} onClick={props.onClick}>
       {props.children}
     </Button>
   );

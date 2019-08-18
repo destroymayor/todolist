@@ -8,14 +8,14 @@ import ItemContent from "components/todoItem/todoItem-itemContent";
 import EditItem from "components/todoItem/todoItem-editItem";
 
 // global props
-import { DarkModeContext } from "hooks/useContextTheme";
+import { ReducerContext } from "reducers";
 
 export default props => {
   const [editState, setEditState] = useState(true);
   const [editTodo, setEditTodo] = useState({ title: "", content: "", date: "", done: false });
 
-  const { theme } = useContext(DarkModeContext);
-  const themeBg = `${theme.darkMode ? "dark-todoItem" : "light-todoItem"}`;
+  const [state] = useContext(ReducerContext);
+  const themeBg = `${state.theme.darkMode ? "dark-todoItem" : "light-todoItem"}`;
 
   useEffect(() => {
     setEditTodo(props.todoItemDataSource);
@@ -31,7 +31,7 @@ export default props => {
       <div className="todoList-item">
         <TodoListButton
           ghost={true}
-          classNames={"todoList-item-ctrl"}
+          classnames={"todoList-item-ctrl"}
           styles={{ color: props.todoItemDataSource.done ? "#1a73e8" : "#aaaaaa" }}
           onClick={editState ? props.markTodoDone : editTodoItem}
           icon={"check"}
@@ -56,11 +56,11 @@ export default props => {
       <div className="todoList-ctrl">
         {editState && (
           <Tooltip title="編輯詳細資訊" placement="bottom">
-            <TodoListButton ghost={true} classNames={`todoList-item-ctrl`} onClick={editTodoItem} icon={"edit"} />
+            <TodoListButton ghost={true} classnames={`todoList-item-ctrl`} onClick={editTodoItem} icon={"edit"} />
           </Tooltip>
         )}
         <Tooltip title="刪除" placement="bottom">
-          <TodoListButton ghost={true} classNames={`todoList-item-ctrl`} onClick={props.removeTodoItem} icon="delete" />
+          <TodoListButton ghost={true} classnames={`todoList-item-ctrl`} onClick={props.removeTodoItem} icon="delete" />
         </Tooltip>
       </div>
     </List.Item>

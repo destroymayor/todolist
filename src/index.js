@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useReducer } from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-
-import Page from "components";
-import { ThemeProvider } from "hooks/useContextTheme";
 import "styles/theme.scss";
+
 import * as serviceWorker from "serviceWorker";
+import Page from "components";
+
+import { reducers, ReducerContext } from "reducers";
+
+const initState = reducers();
 
 const App = () => {
+  const reducer = useReducer(reducers, initState);
   return (
-    <ThemeProvider>
+    <ReducerContext.Provider value={reducer}>
       <Page />
-    </ThemeProvider>
+    </ReducerContext.Provider>
   );
 };
 
@@ -23,4 +27,4 @@ if (module.hot) {
   });
 }
 
-serviceWorker.unregister();
+serviceWorker.register();
