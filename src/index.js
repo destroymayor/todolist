@@ -7,7 +7,6 @@ import * as serviceWorker from "serviceWorker";
 import Page from "components";
 
 import { reducers, ReducerContext } from "reducers";
-
 const initState = reducers();
 
 const App = () => {
