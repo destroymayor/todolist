@@ -1,0 +1,10 @@
+{
+    "language": "English",
+    "add_task": "Add Task",
+    "sort_date": "Sort by Date",
+    "form_input_title": "Enter Title",
+    "form_input_content": "Enter Content",
+    "form_input_date": "Add Date",
+    "item_remove_tooltip": "Remove",
+    "item_edit_item_tooltip": "Edit Item"
+}

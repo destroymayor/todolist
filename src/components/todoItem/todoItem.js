@@ -55,11 +55,11 @@ export default props => {
       {/* ctrl */}
       <div className="todoList-ctrl">
         {editState && (
-          <Tooltip title="編輯詳細資訊" placement="bottom">
+          <Tooltip title={state.i18n.translate("item_edit_item_tooltip")} placement="bottom">
             <TodoListButton ghost={true} classnames={`todoList-item-ctrl`} onClick={editTodoItem} icon={"edit"} />
           </Tooltip>
         )}
-        <Tooltip title="刪除" placement="bottom">
+        <Tooltip title={state.i18n.translate("item_remove_tooltip")} placement="bottom">
           <TodoListButton ghost={true} classnames={`todoList-item-ctrl`} onClick={props.removeTodoItem} icon="delete" />
         </Tooltip>
       </div>

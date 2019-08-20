@@ -39,7 +39,7 @@ $padding:10px;
 // Form Edit Item /
 .todoForm-editItem {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: $margin;
 }
@@ -50,4 +50,10 @@ $padding:10px;
     font-size: 15px;
     margin-left: $margin/2;
     border: 0px solid rgba(0, 0, 0, 0);
+}
+
+.todoForm-editItem-languageSelect {
+    width: 100px;
+    font-size: 15px;
+    margin-left: $margin/2;
 }

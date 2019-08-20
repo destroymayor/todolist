@@ -1,0 +1,10 @@
+{
+    "language": "中文",
+    "add_task": "新增工作",
+    "sort_date": "依日期排序",
+    "form_input_title": "輸入標題",
+    "form_input_content": "輸入詳細內容",
+    "form_input_date": "新曾日期",
+    "item_remove_tooltip": "刪除",
+    "item_edit_item_tooltip": "編輯項目"
+}

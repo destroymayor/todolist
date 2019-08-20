@@ -45,11 +45,11 @@ export default props => {
               refs={inputRef}
               onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
               value={todoFormData.todoInput.title}
-              placeholder="輸入標題"
+              placeholder={state.i18n.translate("form_input_title")}
             />
             <TodoListTextArea
               rows={4}
-              placeholder="輸入詳細內容"
+              placeholder={state.i18n.translate("form_input_content")}
               onChange={e => dispatchTodoInput({ type: "INPUT_CONTENT", inputContent: e.target.value })}
               value={todoFormData.todoInput.content}
             />
@@ -63,7 +63,7 @@ export default props => {
               disabled={todoFormData.todoInput.title !== "" ? false : true}
               classnames="todoForm-addBtn"
               icon="plus">
-              新增工作
+              {state.i18n.translate("add_task")}
             </TodoListButton>
           </div>
         </form>

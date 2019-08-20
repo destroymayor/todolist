@@ -3,7 +3,7 @@ import { Button } from "antd";
 
 import { ReducerContext } from "reducers";
 
-export default props => {
+export default React.memo(props => {
   const [state] = useContext(ReducerContext);
   const themeBg = `${state.theme.darkMode ? "dark-button" : "light-button"}`;
 
@@ -12,4 +12,4 @@ export default props => {
       {props.children}
     </Button>
   );
-};
+});

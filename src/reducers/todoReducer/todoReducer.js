@@ -3,7 +3,7 @@ const initState = {
   option: { SortState: true }
 };
 
-const localStorageTodoData = JSON.parse(localStorage.getItem("test"));
+const localStorageTodoData = JSON.parse(localStorage.getItem("todo"));
 
 const todoReducer = (state = localStorageTodoData || initState, action) => {
   switch (action.type) {

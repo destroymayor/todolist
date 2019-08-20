@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { ReducerContext } from "reducers";
 
 //components
 import TodoListButton from "components/utils/todoListButton";
+import LanguageSelect from "components/utils/languageSelect";
 
 export default props => {
+  const [state] = useContext(ReducerContext);
+
   return (
     <div className="todoForm-editItem">
       <TodoListButton ghost={true} classnames="todoForm-editItem-addBtn" icon="plus" onClick={props.TodoListAddOnClick}>
-        新增工作
+        {state.i18n.translate("add_task")}
       </TodoListButton>
       <TodoListButton
         ghost={true}
         classnames="todoForm-editItem-menu"
         icon={props.sortStateIcon}
         onClick={props.TodoListSortOnClick}>
-        依日期排序
+        {state.i18n.translate("sort_date")}
       </TodoListButton>
+      <div>
+        語言
+        <LanguageSelect classnames="todoForm-editItem-languageSelect" />
+      </div>
     </div>
   );
 };
