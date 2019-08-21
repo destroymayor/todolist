@@ -20,7 +20,7 @@ export default props => {
       className={`${datePickerInputTheme}`}
       locale={locale}
       format="YYYY-MM-DD"
-      placeholder="新增日期/時間"
+      placeholder={state.i18n.translate("form_input_date")}
       dropdownClassName={datePickerDropdownTheme}
       style={props.styles}
       value={props.value !== undefined ? moment(props.value, "YYYY-MM-DD") : undefined}

@@ -9,13 +9,11 @@ export default props => {
       <TodoListInput
         className={`todoList-item-edit-component`}
         value={props.todoItemDataSource.title}
-        placeholder="輸入標題"
         onChange={e => props.editTitle(e.target.value)}
       />
       <TodoListTextArea
         className={`todoList-item-edit-component`}
         value={props.todoItemDataSource.content}
-        placeholder="輸入詳細內容"
         onChange={e => props.editContent(e.target.value)}
       />
       <TodoListDatePicker

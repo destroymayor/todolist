@@ -7,7 +7,9 @@ import { ReducerContext } from "reducers";
 
 export default () => {
   const [state, dispatch] = useContext(ReducerContext);
-  const themeFont = state.theme.darkMode ? "dark-button" : "light-button";
+  const themeBtn = state.theme.darkMode ? "dark-button" : "light-button";
+
+  const themeListItem = state.theme.darkMode ? "dark-languageSelect" : "light-languageSelect";
 
   useEffect(() => {
     localStorage.setItem("i18nLanguage", JSON.stringify(state.i18n.langCode));
@@ -19,7 +21,7 @@ export default () => {
     <Dropdown
       placement="bottomRight"
       overlay={
-        <Menu onClick={e => onLanguageSelect(e.item.props.value)}>
+        <Menu className={themeListItem} onClick={e => onLanguageSelect(e.item.props.value)}>
           <Menu.Item key="1" value="zh_tw">
             中文
           </Menu.Item>
@@ -28,7 +30,7 @@ export default () => {
           </Menu.Item>
         </Menu>
       }>
-      <a className={`languageSelectBtn ${themeFont}`}>
+      <a className={`languageSelectBtn ${themeBtn}`}>
         {state.i18n.translate("translations")} <Icon type="down" />
       </a>
     </Dropdown>

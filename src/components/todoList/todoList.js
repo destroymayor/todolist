@@ -14,11 +14,8 @@ export default () => {
   }, [state.todo]);
 
   const handleAddItemClick = useCallback(item => dispatch({ type: "ADD_ITEM", addTodoListItem: item }), [dispatch]);
-
   const handleDoneItemClick = useCallback(index => dispatch({ type: "DONE_ITEM", doneItem: index }), [dispatch]);
-
   const handleRemoveItemClick = useCallback(index => dispatch({ type: "REMOVE_ITEM", removeItem: index }), [dispatch]);
-
   const handleEditItemClick = useCallback((index, item) => dispatch({ type: "EDIT_ITEM", editIndex: index, editItem: item }), [
     dispatch
   ]);

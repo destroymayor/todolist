@@ -10,7 +10,14 @@ const TodoListInput = props => {
   const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
 
-  return <Input {...props} className={`${props.className} ${themeBg} ${themeFont} `} ref={props.refs} />;
+  return (
+    <Input
+      {...props}
+      placeholder={state.i18n.translate("form_input_title")}
+      className={`${props.className} ${themeBg} ${themeFont} `}
+      ref={props.refs}
+    />
+  );
 };
 
 const TodoListTextArea = props => {
@@ -18,7 +25,13 @@ const TodoListTextArea = props => {
   const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
 
-  return <TextArea {...props} className={`${props.className} ${themeBg} ${themeFont}`} />;
+  return (
+    <TextArea
+      {...props}
+      placeholder={state.i18n.translate("form_input_content")}
+      className={`${props.className} ${themeBg} ${themeFont}`}
+    />
+  );
 };
 
 export { TodoListInput, TodoListTextArea };

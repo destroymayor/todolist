@@ -1,3 +1,23 @@
+.dark-languageSelect {
+    background: #252931;
+
+    &>li {
+        color: rgba(255, 255, 255, 0.88);
+
+        &:hover {
+            background: rgba(212, 212, 212, 0.88);
+        }
+    }
+}
+
+.light-languageSelect {
+    background: #ffffff;
+
+    &>li {
+        color: #282c35;
+    }
+}
+
 .languageSelectBtn {
     cursor: pointer;
     white-space: nowrap;
