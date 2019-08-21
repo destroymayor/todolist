@@ -8,9 +8,11 @@ const translations = {
 
 const getTranslate = langCode => key => translations[langCode][key] || key;
 
+const localState = JSON.parse(localStorage.getItem("i18nLanguage"));
+
 const initState = {
-  langCode: "zh_tw",
-  translate: getTranslate("zh_tw")
+  langCode: localState || "zh_tw",
+  translate: getTranslate(localState || "zh_tw")
 };
 
 const i18nReducer = (state = initState, action) => {

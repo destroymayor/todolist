@@ -21,10 +21,7 @@ export default props => {
         onClick={props.TodoListSortOnClick}>
         {state.i18n.translate("sort_date")}
       </TodoListButton>
-      <div>
-        語言
-        <LanguageSelect classnames="todoForm-editItem-languageSelect" />
-      </div>
+      <LanguageSelect classnames="todoForm-editItem-languageSelect" />
     </div>
   );
 };

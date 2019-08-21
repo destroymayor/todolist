@@ -1,18 +1,36 @@
-import React, { useContext, useCallback } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect, useContext, useCallback } from "react";
+import "components/utils/languageSelect/index.scss";
 
-import { Select } from "antd";
+import { Menu, Dropdown, Icon } from "antd";
 import { ReducerContext } from "reducers";
 
-const { Option } = Select;
-export default props => {
+export default () => {
   const [state, dispatch] = useContext(ReducerContext);
+  const themeFont = state.theme.darkMode ? "dark-button" : "light-button";
+
+  useEffect(() => {
+    localStorage.setItem("i18nLanguage", JSON.stringify(state.i18n.langCode));
+  }, [state.i18n.langCode]);
 
   const onLanguageSelect = useCallback(value => dispatch({ type: "SET_LANGUAGE", langCode: value }), [dispatch]);
 
   return (
-    <Select defaultValue={state.i18n.translate("language")} className={props.classnames} onSelect={onLanguageSelect}>
-      <Option value={"zh_tw"}>中文</Option>
-      <Option value={"en"}>English</Option>
-    </Select>
+    <Dropdown
+      placement="bottomRight"
+      overlay={
+        <Menu onClick={e => onLanguageSelect(e.item.props.value)}>
+          <Menu.Item key="1" value="zh_tw">
+            中文
+          </Menu.Item>
+          <Menu.Item key="2" value="en">
+            English
+          </Menu.Item>
+        </Menu>
+      }>
+      <a className={`languageSelectBtn ${themeFont}`}>
+        {state.i18n.translate("translations")} <Icon type="down" />
+      </a>
+    </Dropdown>
   );
 };
