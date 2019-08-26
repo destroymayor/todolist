@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useCallback } from "react";
 import "components/header/header.scss";
 
 import moment from "moment";
@@ -14,13 +14,14 @@ export default () => {
     localStorage.setItem("themeMode", JSON.stringify(state.theme));
   }, [state.theme]);
 
+  const handleThemeToggle = useCallback(() => dispatch({ type: "DARK_MODE" }), [dispatch]);
+
   return (
     <header className="App-header">
       <div className="App-header-Item">
         <h2>Tasks</h2>
         <div className="App-header-date">{moment().format("YYYY-MM-DD")}</div>
       </div>
-
       <div className="App-header-Item">
         <iframe
           title="github-todolist"
@@ -30,7 +31,7 @@ export default () => {
           width="80px"
           height="20px"
         />
-        <ThemeToggle onChange={() => dispatch({ type: "DARK_MODE" })} />
+        <ThemeToggle onChange={handleThemeToggle} />
       </div>
     </header>
   );

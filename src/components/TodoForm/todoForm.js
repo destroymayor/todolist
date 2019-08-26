@@ -20,7 +20,7 @@ export default props => {
   });
   const inputRef = useRef();
 
-  const OnSubmit = useCallback(
+  const handleFormSubmit = useCallback(
     e => {
       e.preventDefault();
       if (!todoFormData.todoInput) return;
@@ -29,13 +29,27 @@ export default props => {
       inputRef.current.focus();
       dispatchTodoInput({ type: "INPUT_CLEAR" });
     },
-    [todoFormData.todoInput, props]
+    [todoFormData.todoInput, props, dispatchTodoInput]
   );
+
+  const handleTodoInputTitle = useCallback(e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value }), [
+    dispatchTodoInput
+  ]);
+
+  const handleTodoInputContent = useCallback(e => dispatchTodoInput({ type: "INPUT_CONTENT", inputContent: e.target.value }), [
+    dispatchTodoInput
+  ]);
+
+  const handleTodoInputDate = useCallback(dateString => dispatchTodoInput({ type: "INPUT_DATE", inputDate: dateString }), [
+    dispatchTodoInput
+  ]);
+
+  const handleTodoListSort = useCallback(() => dispatch({ type: "SORT_ITEM_BY_DATE" }), [dispatch]);
 
   return (
     <>
       {todoEditState ? (
-        <form className="todoList-form" onSubmit={OnSubmit}>
+        <form className="todoList-form" onSubmit={handleFormSubmit}>
           <div className="todoList-form-item">
             <TodoListButton ghost={true} classnames="todoForm-closeBtn" icon="close" onClick={() => setTodoEditState(false)} />
           </div>
@@ -43,19 +57,19 @@ export default props => {
             <TodoListInput
               className="todoList-input"
               refs={inputRef}
-              onChange={e => dispatchTodoInput({ type: "INPUT_TITLE", inputTitle: e.target.value })}
+              onChange={handleTodoInputTitle}
               value={todoFormData.todoInput.title}
               placeholder={state.i18n.translate("form_input_title")}
             />
             <TodoListTextArea
               rows={4}
               placeholder={state.i18n.translate("form_input_content")}
-              onChange={e => dispatchTodoInput({ type: "INPUT_CONTENT", inputContent: e.target.value })}
+              onChange={handleTodoInputContent}
               value={todoFormData.todoInput.content}
             />
             <TodoListDatePicker
               value={todoFormData.todoInput.date !== "" ? todoFormData.todoInput.date : undefined}
-              onChange={dateString => dispatchTodoInput({ type: "INPUT_DATE", inputDate: dateString })}
+              onChange={dateString => handleTodoInputDate(dateString)}
             />
             <TodoListButton
               ghost={false}
@@ -70,7 +84,7 @@ export default props => {
       ) : (
         <TodoFormEditItem
           TodoListAddOnClick={() => setTodoEditState(true)}
-          TodoListSortOnClick={() => dispatch({ type: "SORT_ITEM_BY_DATE" })}
+          TodoListSortOnClick={handleTodoListSort}
           sortStateIcon={state.todo.option.SortState ? "sort-descending" : "sort-ascending"}
         />
       )}

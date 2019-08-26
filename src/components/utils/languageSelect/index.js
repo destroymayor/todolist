@@ -15,13 +15,13 @@ export default () => {
     localStorage.setItem("i18nLanguage", JSON.stringify(state.i18n.langCode));
   }, [state.i18n.langCode]);
 
-  const onLanguageSelect = useCallback(value => dispatch({ type: "SET_LANGUAGE", langCode: value }), [dispatch]);
+  const onLanguageSelect = useCallback(e => dispatch({ type: "SET_LANGUAGE", langCode: e.item.props.value }), [dispatch]);
 
   return (
     <Dropdown
       placement="bottomRight"
       overlay={
-        <Menu className={themeListItem} onClick={e => onLanguageSelect(e.item.props.value)}>
+        <Menu className={themeListItem} onClick={onLanguageSelect}>
           <Menu.Item key="1" value="zh_tw">
             中文
           </Menu.Item>

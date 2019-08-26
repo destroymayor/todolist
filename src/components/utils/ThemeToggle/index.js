@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { Switch } from "antd";
-import { DarkImage, LightMode } from "components/utils/themeToggle/themeModeImage";
+import { DarkMode, LightMode } from "components/utils/themeToggle/themeModeImage";
 
 import { ReducerContext } from "reducers";
 
@@ -11,7 +11,7 @@ export default props => {
     <Switch
       style={{ backgroundColor: "#0f1114" }}
       checkedChildren={<LightMode />}
-      unCheckedChildren={<DarkImage />}
+      unCheckedChildren={<DarkMode />}
       defaultChecked={!state.theme.darkMode}
       onChange={props.onChange}
     />
