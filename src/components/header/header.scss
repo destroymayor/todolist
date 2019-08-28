@@ -25,7 +25,12 @@
 .App-header-Item {
     @extend .App-header;
 
-    &>iframe {
-        margin-right: 5px;
+    .github-link {
+        padding-right: 5px;
+        color: #80868b;
+
+        &:hover {
+            color: rgb(53, 122, 250);
+        }
     }
 }
