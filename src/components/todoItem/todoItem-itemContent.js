@@ -3,11 +3,11 @@ import React, { useState, useContext } from "react";
 import TodoListButton from "components/utils/todoListButton";
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 import moment from "moment";
 
-export default props => {
+export default React.memo(props => {
   const [dateEditState, setDateEditState] = useState(false);
   const [state] = useContext(ReducerContext);
   const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
@@ -45,4 +45,4 @@ export default props => {
       </div>
     </div>
   );
-};
+});

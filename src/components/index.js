@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import "components/index.scss";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 import Header from "components/header/header";
 import TodoList from "components/todoList/todoList";

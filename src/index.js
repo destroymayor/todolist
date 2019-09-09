@@ -6,7 +6,7 @@ import "styles/theme.scss";
 import * as serviceWorker from "serviceWorker";
 import Page from "components";
 
-import { reducers, ReducerContext } from "reducers";
+import { reducers, ReducerContext } from "store";
 const initState = reducers();
 
 const App = () => {
