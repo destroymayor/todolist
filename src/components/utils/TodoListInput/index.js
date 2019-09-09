@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 import { Input } from "antd";
 const { TextArea } = Input;
 
-const TodoListInput = props => {
+const TodoListInput = React.memo(props => {
   const [state] = useContext(ReducerContext);
   const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
@@ -18,9 +18,9 @@ const TodoListInput = props => {
       ref={props.refs}
     />
   );
-};
+});
 
-const TodoListTextArea = props => {
+const TodoListTextArea = React.memo(props => {
   const [state] = useContext(ReducerContext);
   const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
   const themeFont = `${state.theme.darkMode ? "dark-font" : "light-font"}`;
@@ -32,6 +32,6 @@ const TodoListTextArea = props => {
       className={`${props.className} ${themeBg} ${themeFont}`}
     />
   );
-};
+});
 
 export { TodoListInput, TodoListTextArea };

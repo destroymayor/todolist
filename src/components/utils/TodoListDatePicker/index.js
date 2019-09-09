@@ -8,9 +8,9 @@ import { DatePicker } from "antd";
 import localeZh_TW from "antd/lib/date-picker/locale/zh_TW";
 import localeEn_US from "antd/lib/date-picker/locale/en_US";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
-export default props => {
+export default React.memo(props => {
   const [state] = useContext(ReducerContext);
 
   const datePickerInputTheme = state.theme.darkMode ? "todoList-form-item-date-dark" : "todoList-form-item-date-light";
@@ -33,4 +33,4 @@ export default props => {
       onChange={(value, dateString) => props.onChange(dateString)}
     />
   );
-};
+});

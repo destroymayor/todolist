@@ -3,9 +3,9 @@ import React, { useContext } from "react";
 import { Switch } from "antd";
 import { DarkMode, LightMode } from "components/utils/themeToggle/themeModeImage";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
-export default props => {
+export default React.memo(props => {
   const [state] = useContext(ReducerContext);
   return (
     <Switch
@@ -16,4 +16,4 @@ export default props => {
       onChange={props.onChange}
     />
   );
-};
+});

@@ -8,9 +8,9 @@ import ItemContent from "components/todoItem/todoItem-itemContent";
 import EditItem from "components/todoItem/todoItem-editItem";
 
 // global props
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
-export default props => {
+export default React.memo(props => {
   const [editState, setEditState] = useState(true);
   const [editTodo, setEditTodo] = useState({ title: "", content: "", date: "", done: false });
 
@@ -65,4 +65,4 @@ export default props => {
       </div>
     </List.Item>
   );
-};
+});

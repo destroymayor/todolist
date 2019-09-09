@@ -4,7 +4,7 @@ import { List } from "antd";
 import TodoFrom from "components/todoForm/todoForm";
 import TodoItem from "components/todoItem/todoItem";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 export default () => {
   const [state, dispatch] = useContext(ReducerContext);

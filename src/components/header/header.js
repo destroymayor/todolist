@@ -5,7 +5,7 @@ import moment from "moment";
 
 import ThemeToggle from "components/utils/themeToggle";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 export default () => {
   const [state, dispatch] = useContext(ReducerContext);

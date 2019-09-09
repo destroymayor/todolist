@@ -9,9 +9,9 @@ import TodoFormEditItem from "components/todoForm/todoForm-editItem";
 
 // reducer
 import inputTodoReducer from "components/todoForm/reducer";
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
-export default props => {
+export default React.memo(props => {
   const [todoEditState, setTodoEditState] = useState(false);
 
   const [state, dispatch] = useContext(ReducerContext);
@@ -90,4 +90,4 @@ export default props => {
       )}
     </>
   );
-};
+});

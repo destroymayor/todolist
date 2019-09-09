@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Button } from "antd";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 export default React.memo(props => {
   const [state] = useContext(ReducerContext);

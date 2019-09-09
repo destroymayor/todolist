@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 //components
 import TodoListButton from "components/utils/todoListButton";
 import LanguageSelect from "components/utils/languageSelect";
 
-export default props => {
+export default React.memo(props => {
   const [state] = useContext(ReducerContext);
 
   return (
@@ -24,4 +24,4 @@ export default props => {
       <LanguageSelect classnames="todoForm-editItem-languageSelect" />
     </div>
   );
-};
+});

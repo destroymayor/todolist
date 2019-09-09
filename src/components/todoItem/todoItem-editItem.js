@@ -3,7 +3,7 @@ import React from "react";
 import TodoListDatePicker from "components/utils/todoListDatePicker";
 import { TodoListInput, TodoListTextArea } from "components/utils/todoListInput";
 
-export default props => {
+export default React.memo(props => {
   return (
     <div>
       <TodoListInput
@@ -22,4 +22,4 @@ export default props => {
       />
     </div>
   );
-};
+});

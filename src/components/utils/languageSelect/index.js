@@ -3,7 +3,7 @@ import React, { useEffect, useContext, useCallback } from "react";
 import "components/utils/languageSelect/index.scss";
 
 import { Menu, Dropdown, Icon } from "antd";
-import { ReducerContext } from "reducers";
+import { ReducerContext } from "store";
 
 export default () => {
   const [state, dispatch] = useContext(ReducerContext);
