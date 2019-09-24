@@ -1,17 +1,17 @@
-import React, { useEffect, useContext } from "react";
-import "components/index.scss";
+import React, { useEffect, useContext } from 'react';
+import 'components/index.scss';
 
-import { ReducerContext } from "store";
+import { ReducerContext } from 'store';
 
-import Header from "components/header/header";
-import TodoList from "components/todoList/todoList";
+import Header from 'components/header/header';
+import TodoList from 'components/todoList/todoList';
 
 export default () => {
   const [state] = useContext(ReducerContext);
-  const themeBg = `${state.theme.darkMode ? "dark" : "light"}`;
+  const themeBg = `${state.theme.darkMode ? 'dark' : 'light'}`;
 
   useEffect(() => {
-    document.getElementById("body").className = themeBg;
+    document.getElementById('body').className = themeBg;
   }, [themeBg]);
 
   return (
